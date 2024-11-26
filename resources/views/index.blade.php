@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
-@section('content')
+@section('content') 
 {{-- Index --}}
 <div class="dashboard-content-one">
-    <!-- Breadcubs Area Start Here -->
+    <!-- Breadcubs Area Start Here --> 
     <div class="breadcrumbs-area">
         <h3>Admin Dashboard</h3>
         <ul>
