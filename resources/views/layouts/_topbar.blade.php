@@ -4,11 +4,7 @@
         <li class="navbar-item header-search-bar">
             <div class="input-group stylish-input-group">
                 <span class="input-group-addon">
-                    <button type="submit">
-                        <span class="flaticon-search" aria-hidden="true"></span>
-                    </button>
                 </span>
-                <input type="text" class="form-control" placeholder="Find Something . . .">
             </div>
         </li>
     </ul>
