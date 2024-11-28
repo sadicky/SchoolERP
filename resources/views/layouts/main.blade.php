@@ -1,5 +1,6 @@
 
 
+<title>@yield('title', config('app.name'))</title>
     @include('layouts._header')
 
 <body>

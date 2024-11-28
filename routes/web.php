@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Web\WebAnneeScolaire;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+//Anees Scolaire routes
+Route::resource('annees', WebAnneeScolaire::class);
+Route::post('/annees/{id}/actif', [WebAnneeScolaire::class,'actif'])->name('actif');
+Route::post('/annees/{id}/deactif', [WebAnneeScolaire::class,'deactif'])->name('deactif');

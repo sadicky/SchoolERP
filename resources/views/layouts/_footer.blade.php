@@ -19,5 +19,17 @@
     <script src="{{asset('assets/js/fullcalendar.min.js')}}"></script>
     <!-- Chart Js -->
     <script src="{{asset('assets/js/Chart.min.js')}}"></script>
+    <!-- Modernize js -->
+    <script src="{{asset('assets/js/modernizr-3.6.0.min.js')}}"></script>
+    <!-- Select 2 Js -->
+    <script src="{{asset('assets/js/select2.min.js')}}"></script>
+    <!-- Data Table Js -->
+    <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
+    <!-- Smoothscroll Js -->
+    <script src="{{asset('assets/js/jquery.smoothscroll.min.js')}}"></script>
+    <!-- Date Picker Js -->
+    <script src="{{asset('assets/js/datepicker.min.js')}}"></script>
+    <!-- Scroll Up Js -->
+    <script src="{{asset('assets/js/jquery.scrollUp.min.js')}}"></script>
     <!-- Custom Js -->
     <script src="{{asset('assets/js/main.js')}}"></script>
