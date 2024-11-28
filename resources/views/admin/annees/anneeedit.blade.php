@@ -64,7 +64,7 @@
     </div>
     <!-- Teacher Payment Area End Here -->
     <!-- Footer Area Start Here -->
-    @include('layouts.footer');
+    @include('layouts.footer')
     <!-- Footer Area End Here -->
 </div>
 

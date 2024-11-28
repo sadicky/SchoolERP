@@ -81,7 +81,7 @@
                                     Desactiver
                                 </button>
                             </form>
-                            <a href="{{route('annees.edit',$annee->annee_id)}}" class="fas fa-edit text-dark-pastel-green" title="Modifier"></a>
+                            <a href="{{route('annees.edit',$annee->annee_id)}}" class=" btn btn-xs btn-success fas fa-edit" title="Modifier">Modifier</a>
 
                         </td>
                     </tr>
@@ -92,7 +92,7 @@
     </div>
     <!-- Teacher Payment Area End Here -->
     <!-- Footer Area Start Here -->
-    @include('layouts.footer');
+    @include('layouts.footer')
     <!-- Footer Area End Here -->
 </div>
 
