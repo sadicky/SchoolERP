@@ -3,6 +3,10 @@
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnneeScolaireController;
+use App\Http\Controllers\CatFraisController;
+use App\Http\Controllers\CatPrimeController;
+use App\Http\Controllers\FraisController;
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\SectionController;
@@ -22,21 +26,32 @@ Route::get('/', function () {
     return view('index');
 });
 
-//Anees Scolaire routes
+//ANNEES SCOLAIRES
 Route::resource('annees', AnneeScolaireController::class);
 Route::patch('/annees/{id}/actif', [AnneeScolaireController::class,'actif'])->name('actif');
 Route::patch('/annees/{id}/deactif', [AnneeScolaireController::class,'deactif'])->name('deactif');
 
-
-//CategoriesOptions routes
+//CATEGORIES
 Route::resource('categories', CategoryController::class);
 Route::patch('/categories/{id}/status', [CategoryController::class,'statut'])->name('statut');
 
-//Periodes routes
+//PERIODES
 Route::resource('periodes', PeriodeController::class);
 
-//sections routes
+//SECTIONS
 Route::resource('sections', SectionController::class);
 
-//options routes
+//OPTIONS
 Route::resource('options', OptionController::class);
+
+//GRADES 
+Route::resource('grades', GradeController::class);
+
+//FRAIS SCOLAIRE
+Route::resource('frais', FraisController::class);
+
+//CATEGORIES FRAIS SCOLAIRE
+Route::resource('categories_frais', CatFraisController::class);
+
+//CATEGORIES PRIME
+Route::resource('categories_primes', CatPrimeController::class);

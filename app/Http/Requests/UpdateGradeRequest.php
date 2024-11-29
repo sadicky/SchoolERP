@@ -11,7 +11,7 @@ class UpdateGradeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,8 @@ class UpdateGradeRequest extends FormRequest
     {
         return [
             //
+            'grade_name' => 'required',
+            'salaireBase' => 'required',
         ];
     }
 }

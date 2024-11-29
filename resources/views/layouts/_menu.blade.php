@@ -114,16 +114,16 @@
                 <a href="{{route('options.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Options</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('annees.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Grade</a>
+                <a href="{{route('grades.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Grade</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('annees.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Frais Scolaire</a>
+                <a href="{{route('categories_frais.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Catégories Frais Scolaire</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('annees.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Catégories Frais Scolaire</a>
+                <a href="{{route('frais.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Frais Scolaire</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('annees.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Catégories Primes</a>
+                <a href="{{route('categories_primes.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Catégories Primes</a>
             </li>
         </ul>
     </li>
