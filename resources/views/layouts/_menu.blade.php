@@ -102,22 +102,25 @@
                 <a href="{{route('annees.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Année Scolaire</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('periodes.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Périodes</a>
-            </li>
-            <li class="nav-item">
                 <a href="{{route('categories.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Catégories Options</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('annees.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Options</a>
+                <a href="{{route('periodes.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Périodes</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('annees.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Sections</a>
+                <a href="{{route('sections.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Sections</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('options.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Options</a>
             </li>
             <li class="nav-item">
                 <a href="{{route('annees.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Grade</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('annees.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Frais</a>
+                <a href="{{route('annees.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Frais Scolaire</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('annees.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Catégories Frais Scolaire</a>
             </li>
             <li class="nav-item">
                 <a href="{{route('annees.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Catégories Primes</a>
