@@ -11,7 +11,7 @@ class UpdateCatFraisRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,7 @@ class UpdateCatFraisRequest extends FormRequest
     {
         return [
             //
+            'category_name' => 'required',
         ];
     }
 }
