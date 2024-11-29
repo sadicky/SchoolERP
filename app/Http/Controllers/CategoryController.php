@@ -14,6 +14,11 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        //
+        $title = "Catégories(Options)";
+        $categories = Category::all();
+
+      return view('admin.categories_options.categories',compact('categories', 'title'));
     }
 
     /**
@@ -30,30 +35,48 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         //
+        Category::create([ 'category' => $request->category, 'status' => '1']);
+
+        session()->flash('message', ' Ajouté avec succes');
+        return redirect()->route('categories.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show( $id)
     {
-        //
+        // 
+        $title = "Categorie";
+        
+        $categories = Category::findOrFail($id);
+        return view('admin.categories_options.categoryid', compact('categories','title'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
         //
+        $title = "Editer la Categorie";
+        $categories = Category::findOrFail($id);
+        
+        return view('admin.categories_options.categoryedit', compact('categories','title'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, $id)
     {
         //
+        $categories = Category::findOrFail($id);
+
+        $categories->update(['category' => $request->category]);
+
+        session()->flash('message', $request->category . ' a été modifié avec succes');
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -63,4 +86,23 @@ class CategoryController extends Controller
     {
         //
     }
+
+    public function statut(StoreCategoryRequest $request, $id)
+    {
+        //
+        $categories = Category::findOrFail($id);
+
+        if($categories->status=='0'){
+            $categories->status = '1';
+        }
+        else {
+            $categories->status = '0';
+        }
+        
+        $categories->update(['status' => $categories->status]);
+
+        session()->flash('message', $request->category . ' a été modifié avec succes');
+        return redirect()->route('categories.index');
+    }
+
 }

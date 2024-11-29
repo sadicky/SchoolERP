@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+    
     protected $table="tbl_category_options";
-    
-    // protected $guarded = [];
-    public $fillable = ['category'];
-    
     protected $primaryKey = 'category_option_id';
+    
+    public $fillable = ['category','status'];
+    public $timestamps = false;
+    
 }

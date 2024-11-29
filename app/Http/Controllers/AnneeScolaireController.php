@@ -14,11 +14,7 @@ class AnneeScolaireController extends Controller
     public function index()
     {
         //
-        $title = "Année Scolaire";
-        // $endpoint = route('web.annees.index');
-        // $endpoint = env('API_BASE_URL');
-        
-        // $response = Http::get("https://google.com/search");
+          $title = "Année Scolaire";
           $annees = AnneeScolaire::all();
 
         return view('admin.annees.annees',compact('annees', 'title'));

@@ -21,9 +21,13 @@ Route::get('/', function () {
 
 //Anees Scolaire routes
 Route::resource('annees', AnneeScolaireController::class);
-Route::post('/annees/{id}/actif', [AnneeScolaireController::class,'actif'])->name('actif');
-Route::post('/annees/{id}/deactif', [AnneeScolaireController::class,'deactif'])->name('deactif');
+Route::patch('/annees/{id}/actif', [AnneeScolaireController::class,'actif'])->name('actif');
+Route::patch('/annees/{id}/deactif', [AnneeScolaireController::class,'deactif'])->name('deactif');
 
 
 //CategoriesOptions routes
 Route::resource('categories', CategoryController::class);
+Route::patch('/categories/{id}/status', [CategoryController::class,'statut'])->name('statut');
+
+//Periodes routes
+Route::resource('periodes', CategoryController::class);
