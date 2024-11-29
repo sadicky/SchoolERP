@@ -14,7 +14,7 @@
                         <div
                             class="col-xl-4 col-lg-4 col-12 form-group {{$errors->has('category_option_id') ? 'has-error':''}}">
                             <label>Catégorie</label>
-                            <select class="form-control select2" name='category_option_id'>
+                            <select multiple class="form-control  select2" name='category_option_id[]'>
                                 <option value="">Choisir la categorie</option>
                                 @foreach($categories as $category)
                                 <option value="{{$category->category_option_id}}">{{$category->category}}</option>

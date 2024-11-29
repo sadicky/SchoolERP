@@ -40,10 +40,24 @@ class PeriodeController extends Controller
     public function store(StorePeriodeRequest $request)
     {
         //
-        Periode::create([ 
-            'periode_name' => $request->periode_name,
-            'category_option_id' => $request->category_option_id,
-            'status' => '1']);
+        // Periode::create([ 
+        //     'periode_name' => $request->periode_name,
+        //     'category_option_id' => $request->category_option_id,
+        //     'status' => '1']);
+
+            $input = $request->all();
+            $data = [];
+            if (is_array($input['category_option_id'])) {
+                foreach ($input['category_option_id'] as $item) {
+                    array_push($data, [
+                        'periode_name' => $request->periode_name,
+                        'category_option_id' => $item,
+                        'status' => '1'
+                    ]);
+                }
+            }
+
+            Periode::insert($data);
 
         session()->flash('message', $request->periode_name . ' Ajouté avec succes');
         return redirect()->route('periodes.index');
