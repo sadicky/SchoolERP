@@ -43,39 +43,36 @@
     @endif
     <!-- Row -->
     <div class="modal-box pull-right">
-        <button type="button" class="modal-trigger" data-toggle="modal" data-target="#add-section">Ajouter Une Section</button>
+        <button type="button" class="modal-trigger" data-toggle="modal" data-target="#add-category_primes">Ajouter Categorie Prime</button>
     </div>
     <!-- Teacher Payment Area Start Here -->
     <div class="card height-auto">
         <div class="card-body">
             <div class="heading-layout1">
                 <div class="item-title">
-                    <h3>Toutes les Section</h3>
+                    <h3>Toutes les category primes</h3>
                 </div>
             </div>
-
             <table class="table data-table text-nowrap">
                 <thead>
                     <th>#</th>
-                    <th>Catégorie</th>
-                    <th>Section</th>
+                    <th>categorie de Prime</th>
                     <th>Statut</th>
                     <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($sections as $section )
+                    @foreach ($categories_primes as $category_prime )
                     <tr>
-                        <td>{{$section->section_id}}</td>
-                         <td>{{$section->category}}</td>
-                        <td><a href="{{route('sections.show',$section->section_id)}}">{{$section->section_name}}</a></td>
-                        @if($section->status =='1')
+                        <td>{{$category_prime->category_prime_id}}</td>
+                        <td><a href="{{route('categories_primes.show',$category_prime->category_prime_id)}}">{{$category_prime->category_prime}}</a></td>
+                         @if($category_prime->status =='1')
                         <td class="text-success">Actif </td>
                         @else
                         <td class="text-danger">Désactiver</td>
                         @endif
                         <td>
-                            <form action="{{ route('sections.destroy', $section->section_id) }}" method="POST"
+                            <form action="{{ route('categories_primes.destroy', $category_prime->category_prime_id) }}" method="POST"
                                 style="display: inline;">
                                 @csrf
                                 @method('PATCH')
@@ -84,7 +81,7 @@
                                     Desactiver
                                 </button>
                             </form>
-                            <a href="{{route('sections.edit',$section->section_id)}}"
+                            <a href="{{route('categories_primes.edit',$category_prime->category_prime_id)}}"
                                 class=" btn btn-xs btn-success fas fa-edit" title="Modifier">Modifier</a>
                         </td>
                     </tr>
@@ -99,5 +96,5 @@
     <!-- Footer Area End Here -->
 </div>
 
-@include('admin.sections.modals.create')
+@include('admin.categories_primes.modals.create')
 @endsection

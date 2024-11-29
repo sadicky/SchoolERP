@@ -10,7 +10,7 @@
             <li>
                 <a href="/">Dashboard</a>
             </li>
-            <li>Detail sur la section {{$sections->section_name}}</li>
+            <li>Detail sur la categories de frais {{$categories_primes->category_prime}}</li>
         </ul>
     </div>
 
@@ -44,8 +44,8 @@
     <!-- Teacher Payment Area Start Here -->
     <div class="card height-auto">
         <div class="card-body">
-            <h3> {{$sections->category}} : {{$sections->section_name}}</h3>
-            <a href="{{route('sections.edit',$sections->section_id)}}" class="fas fa-edit text-dark-pastel-green" title="Modifier"></a>
+            <h3> categories frais => {{$categories_primes->category_prime}} </h3>
+            <a href="{{route('categories_primes.edit',$categories_primes->category_prime_id)}}" class="fas fa-edit text-dark-pastel-green" title="Modifier"></a>
 
         </div>
     </div>
