@@ -44,7 +44,7 @@
     <!-- Teacher Payment Area Start Here -->
     <div class="card height-auto">
         <div class="card-body">
-            <h3> categories frais => {{$categories_primes->category_prime}} </h3>
+            <h3> Categorie Prime: {{$categories_primes->category_prime}} </h3>
             <a href="{{route('categories_primes.edit',$categories_primes->category_prime_id)}}" class="fas fa-edit text-dark-pastel-green" title="Modifier"></a>
 
         </div>

@@ -52,6 +52,8 @@ Route::resource('frais', FraisController::class);
 
 //CATEGORIES FRAIS SCOLAIRE
 Route::resource('categories_frais', CatFraisController::class);
+Route::patch('/categories_frais/{id}/affecter', [CatFraisController::class,'affect_option'])->name('affect_option');
+
 
 //CATEGORIES PRIME
 Route::resource('categories_primes', CatPrimeController::class);

@@ -44,6 +44,9 @@
         <a href="#" class="nav-link"><i class="flaticon-technological"></i><span>Finances</span></a>
         <ul class="nav sub-group-menu">
             <li class="nav-item">
+                <a href="{{route('frais.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Frais Scolaire</a>
+            </li>
+            <li class="nav-item">
                 <a href="all-expense.html" class="nav-link"><i class="fas fa-angle-right"></i>Salaires</a>
             </li>
             <li class="nav-item">
@@ -118,9 +121,6 @@
             </li>
             <li class="nav-item">
                 <a href="{{route('categories_frais.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Catégories Frais Scolaire</a>
-            </li>
-            <li class="nav-item">
-                <a href="{{route('frais.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Frais Scolaire</a>
             </li>
             <li class="nav-item">
                 <a href="{{route('categories_primes.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Catégories Primes</a>
