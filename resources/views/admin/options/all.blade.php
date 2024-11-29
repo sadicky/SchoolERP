@@ -43,39 +43,39 @@
     @endif
     <!-- Row -->
     <div class="modal-box pull-right">
-        <button type="button" class="modal-trigger" data-toggle="modal" data-target="#add-periode">Ajouter Une Période</button>
+        <button type="button" class="modal-trigger" data-toggle="modal" data-target="#add-option">Ajouter Une Option</button>
     </div>
     <!-- Teacher Payment Area Start Here -->
     <div class="card height-auto">
         <div class="card-body">
             <div class="heading-layout1">
                 <div class="item-title">
-                    <h3>Toutes les période</h3>
+                    <h3>Toutes les Option</h3>
                 </div>
             </div>
 
             <table class="table data-table text-nowrap">
                 <thead>
                     <th>#</th>
-                    <th>Période</th>
-                    <th>Catégorie</th>
+                    <th>Section</th>
+                    <th>Option</th>
                     <th>Statut</th>
                     <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($periodes as $periode )
+                    @foreach ($options as $option )
                     <tr>
-                        <td>{{$periode->periode_id}}</td>
-                        <td><a href="{{route('periodes.show',$periode->periode_id)}}">{{$periode->periode_name}}</a></td>
-                        <td>{{$periode->category}}</td>
-                        @if($periode->status =='1')
+                        <td>{{$option->option_id}}</td>
+                        <td><a href="{{route('sections.show',$option->section_id)}}">{{$option->section_name}}</a></td>
+                        <td><a href="{{route('options.show',$option->option_id)}}">{{$option->option_name}}</a></td>
+                        @if($option->status =='1')
                         <td class="text-success">Actif </td>
                         @else
                         <td class="text-danger">Désactiver</td>
                         @endif
                         <td>
-                            <form action="{{ route('periodes.destroy', $periode->periode_id) }}" method="POST"
+                            <form action="{{ route('options.destroy', $option->option_id) }}" method="POST"
                                 style="display: inline;">
                                 @csrf
                                 @method('PATCH')
@@ -84,7 +84,7 @@
                                     Desactiver
                                 </button>
                             </form>
-                            <a href="{{route('periodes.edit',$periode->periode_id)}}"
+                            <a href="{{route('options.edit',$option->option_id)}}"
                                 class=" btn btn-xs btn-success fas fa-edit" title="Modifier">Modifier</a>
                         </td>
                     </tr>
@@ -99,5 +99,5 @@
     <!-- Footer Area End Here -->
 </div>
 
-@include('admin.periodes.modals.create')
+@include('admin.options.modals.create')
 @endsection

@@ -2,7 +2,7 @@
 
 @section('title', $title.' | ' . config('app.name'))
 @section('content')
-{{-- {{dd($periodes)}} --}}
+{{-- {{dd($options)}} --}}
 <div class="dashboard-content-one">
     <!-- Breadcubs Area Start Here -->
     <div class="breadcrumbs-area">
@@ -10,7 +10,7 @@
             <li>
                 <a href="/">Dashboard</a>
             </li>
-            <li>Modifier l'Année Scolaire {{$periodes->periode_name}}</li>
+            <li>Modifier l'Année Scolaire {{$options->option_name}}</li>
         </ul>
     </div>
 
@@ -45,24 +45,24 @@
     <div class="card height-auto">
         <div class="card-body">
             
-            <form method="post" action="{{ route('periodes.update',$periodes->periode_id) }}" enctype="multipart/form-data" class="form">
+            <form method="post" action="{{ route('options.update',$options->option_id) }}" enctype="multipart/form-data" class="form">
                 {{ csrf_field() }}
                 {{method_field('PUT')}}
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-12 form-group {{$errors->has('category_option_id') ? 'has-error':''}}">
+                    <div class="col-xl-4 col-lg-4 col-12 form-group {{$errors->has('section_id') ? 'has-error':''}}">
                         <label>Catégorie</label>
-                        <select class="form-control select2" name='category_option_id'>
-                            <option value="{{$periodes->category_option_id}}">{{$periodes->category}}</option>
-                            @foreach($categories as $category)
-                            <option value="{{$category->category_option_id}}">{{$category->category}}</option>
+                        <select class="form-control select2" name='section_id'>
+                            <option value="{{$options->section_id}}">{{$options->section_name}}</option>
+                            @foreach($sections as $section)
+                            <option value="{{$section->section_id}}">{{$section->section_name}}</option>
                             @endforeach
                         </select>
-                        {{ $errors->first('category_option_id'),'<code>:message</code>' }}
+                        {{ $errors->first('section_id'),'<code>:message</code>' }}
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
-                        <label>periode_name Scolaire</label>
-                        <input type="text" name="periode_name" value="{{$periodes->periode_name}}" class="form-control">
-                        {{ $errors->first('periode_name'),'<p class="text-danger">:message</p>' }}
+                        <label>Option </label>
+                        <input type="text" name="option_name" value="{{$options->option_name}}" class="form-control">
+                        {{ $errors->first('option_name'),'<p class="text-danger">:message</p>' }}
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>#</label>

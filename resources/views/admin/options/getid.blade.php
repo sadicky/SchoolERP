@@ -10,7 +10,7 @@
             <li>
                 <a href="/">Dashboard</a>
             </li>
-            <li>Detail sur la periode {{$periodes->periode_name}}</li>
+            <li>Detail sur la option {{$options->option_name}}</li>
         </ul>
     </div>
 
@@ -44,8 +44,9 @@
     <!-- Teacher Payment Area Start Here -->
     <div class="card height-auto">
         <div class="card-body">
-            <h3> {{$periodes->category}} : {{$periodes->periode_name}}</h3>
-            <a href="{{route('periodes.edit',$periodes->periode_id)}}" class="fas fa-edit text-dark-pastel-green" title="Modifier"></a>
+            Section: {{$options->section_name}} <br>
+            Option: {{$options->option_name}}</h3>
+            <a href="{{route('options.edit',$options->option_id)}}" class="fas fa-edit text-dark-pastel-green" title="Modifier"></a>
 
         </div>
     </div>

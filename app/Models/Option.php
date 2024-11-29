@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Option extends Model
 {
     use HasFactory;
+    protected $table="tbl_options";
+    protected $primaryKey = 'option_id';
+    
+    public $fillable = ['option_name','section_id','status'];
 }

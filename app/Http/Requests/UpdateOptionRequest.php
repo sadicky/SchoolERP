@@ -11,7 +11,7 @@ class UpdateOptionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,8 @@ class UpdateOptionRequest extends FormRequest
     {
         return [
             //
+            'option_name' => 'required',
+            'section_id' => 'required',
         ];
     }
 }
