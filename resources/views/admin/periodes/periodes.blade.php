@@ -1,8 +1,8 @@
 @extends('layouts.main')
 
-@section('title', 'Année Scolaire | ' . config('app.name'))
+@section('title', $title.' | ' . config('app.name'))
 @section('content')
-{{-- Index --}}
+
 <div class="dashboard-content-one">
     <!-- Breadcubs Area Start Here -->
     <div class="breadcrumbs-area">
@@ -43,46 +43,49 @@
     @endif
     <!-- Row -->
     <div class="modal-box pull-right">
-        <button type="button" class="modal-trigger" data-toggle="modal" data-target="#add-annee">Ajouter Une Année
-            Scolaire</button>
+        <button type="button" class="modal-trigger" data-toggle="modal" data-target="#add-periode">Ajouter Une Période</button>
     </div>
     <!-- Teacher Payment Area Start Here -->
     <div class="card height-auto">
         <div class="card-body">
             <div class="heading-layout1">
                 <div class="item-title">
-                    <h3>Toutes les années Scolaires</h3>
+                    <h3>Toutes les période</h3>
                 </div>
             </div>
-            
+
             <table class="table data-table text-nowrap">
                 <thead>
                     <th>#</th>
-                    <th>Annee Scolaire</th>
+                    <th>Période</th>
+                    <th>Catégorie</th>
                     <th>Statut</th>
                     <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($annees as $annee )
+                    @foreach ($periodes as $periode )
                     <tr>
-                        <td>{{$annee->annee_id}}</td>
-                        <td><a href="{{route('annees.show',$annee)}}">{{$annee->annee}}</a></td>
-                        @if($annee->statut =='1')
+                        <td>{{$periode->periode_id}}</td>
+                        <td><a href="{{route('periodes.show',$periode->periode_id)}}">{{$periode->periode_name}}</a></td>
+                        <td>{{$periode->category}}</td>
+                        @if($periode->status =='1')
                         <td class="text-success">Actif </td>
                         @else
                         <td class="text-danger">Désactiver</td>
                         @endif
                         <td>
-                            <form action="{{ route('annees.destroy', $annee) }}" method="POST" style="display: inline;">
+                            <form action="{{ route('periodes.destroy', $periode->periode_id) }}" method="POST"
+                                style="display: inline;">
                                 @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-xs btn-danger fa fa-trash" onclick="return confirm('Êtes-vous sûr de vouloir desactiver cette année Scolaire ?')">
+                                @method('PATCH')
+                                <button type="submit" class="btn btn-xs btn-danger fa fa-trash"
+                                    onclick="return confirm('Êtes-vous sûr de vouloir faire cette action ?')">
                                     Desactiver
                                 </button>
                             </form>
-                            <a href="{{route('annees.edit',$annee->annee_id)}}" class=" btn btn-xs btn-success fas fa-edit" title="Modifier">Modifier</a>
-
+                            <a href="{{route('periodes.edit',$periode->periode_id)}}"
+                                class=" btn btn-xs btn-success fas fa-edit" title="Modifier">Modifier</a>
                         </td>
                     </tr>
                     @endforeach
@@ -96,5 +99,5 @@
     <!-- Footer Area End Here -->
 </div>
 
-@include('admin.annees.modals.create')
+@include('admin.periodes.modals.create')
 @endsection

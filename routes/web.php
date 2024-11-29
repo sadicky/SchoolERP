@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnneeScolaireController;
+use App\Http\Controllers\PeriodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,4 @@ Route::resource('categories', CategoryController::class);
 Route::patch('/categories/{id}/status', [CategoryController::class,'statut'])->name('statut');
 
 //Periodes routes
-Route::resource('periodes', CategoryController::class);
+Route::resource('periodes', PeriodeController::class);

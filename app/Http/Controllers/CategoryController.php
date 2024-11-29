@@ -92,12 +92,7 @@ class CategoryController extends Controller
         //
         $categories = Category::findOrFail($id);
 
-        if($categories->status=='0'){
-            $categories->status = '1';
-        }
-        else {
-            $categories->status = '0';
-        }
+        $categories->status = !$categories->status ;
         
         $categories->update(['status' => $categories->status]);
 

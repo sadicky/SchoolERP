@@ -15,4 +15,8 @@ class Category extends Model
     public $fillable = ['category','status'];
     public $timestamps = false;
     
+    // public function Periode(){
+    //     return $this->belongsTo(Periode::class,'category_option_id','periode_id');
+    // }
+
 }

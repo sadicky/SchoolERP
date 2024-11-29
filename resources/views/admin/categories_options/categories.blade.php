@@ -68,7 +68,7 @@
                     <tr>
                         <td>{{$category->category_id}}</td>
                         <td><a href="{{route('categories.show',$category->category_option_id)}}">{{$category->category}}</a></td>
-                        @if($category->status =='1')
+                        @if($category->status ==true)
                         <td class="text-success">Actif </td>
                         @else
                         <td class="text-danger">Désactiver</td>

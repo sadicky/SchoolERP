@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Année Scolaire | ' . config('app.name'))
+@section('title', $title.' | ' . config('app.name'))
 @section('content')
 {{-- Index --}}
 <div class="dashboard-content-one">
@@ -10,7 +10,7 @@
             <li>
                 <a href="/">Dashboard</a>
             </li>
-            <li>Detail sur l'Année Scolaire {{$annees->annee}}</li>
+            <li>Detail sur la periode {{$periodes->periode_name}}</li>
         </ul>
     </div>
 
@@ -44,8 +44,8 @@
     <!-- Teacher Payment Area Start Here -->
     <div class="card height-auto">
         <div class="card-body">
-            
-            <a href="{{route('annees.edit',$annees)}}" class="fas fa-edit text-dark-pastel-green" title="Modifier"></a>
+            <h3> {{$periodes->category}} : {{$periodes->periode_name}}</h3>
+            <a href="{{route('periodes.edit',$periodes->periode_id)}}" class="fas fa-edit text-dark-pastel-green" title="Modifier"></a>
 
         </div>
     </div>

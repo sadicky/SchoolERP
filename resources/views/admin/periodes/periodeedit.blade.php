@@ -1,8 +1,8 @@
 @extends('layouts.main')
 
-@section('title', 'Année Scolaire | ' . config('app.name'))
+@section('title', $title.' | ' . config('app.name'))
 @section('content')
-{{-- Index --}}
+{{-- {{dd($periodes)}} --}}
 <div class="dashboard-content-one">
     <!-- Breadcubs Area Start Here -->
     <div class="breadcrumbs-area">
@@ -10,7 +10,7 @@
             <li>
                 <a href="/">Dashboard</a>
             </li>
-            <li>Modifier l'Année Scolaire {{$annees->annee}}</li>
+            <li>Modifier l'Année Scolaire {{$periodes->periode_name}}</li>
         </ul>
     </div>
 
@@ -45,16 +45,26 @@
     <div class="card height-auto">
         <div class="card-body">
             
-            <form method="post" action="{{ route('annees.update',$annees) }}" enctype="multipart/form-data" class="form">
+            <form method="post" action="{{ route('periodes.update',$periodes->periode_id) }}" enctype="multipart/form-data" class="form">
                 {{ csrf_field() }}
                 {{method_field('PUT')}}
                 <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-12 form-group">
-                        <label>Annee Scolaire</label>
-                        <input type="text" name="annee" value="{{$annees->annee}}" class="form-control">
-                        {{ $errors->first('annee'),'<p class="text-danger">:message</p>' }}
+                    <div class="col-xl-4 col-lg-4 col-12 form-group {{$errors->has('category_option_id') ? 'has-error':''}}">
+                        <label>Catégorie</label>
+                        <select class="form-control select2" name='category_option_id'>
+                            <option value="{{$periodes->category_option_id}}">{{$periodes->category}}</option>
+                            @foreach($categories as $category)
+                            <option value="{{$category->category_option_id}}">{{$category->category}}</option>
+                            @endforeach
+                        </select>
+                        {{ $errors->first('category_option_id'),'<code>:message</code>' }}
                     </div>
-                    <div class="col-xl-6 col-lg-6 col-12 form-group">
+                    <div class="col-xl-4 col-lg-4 col-12 form-group">
+                        <label>periode_name Scolaire</label>
+                        <input type="text" name="periode_name" value="{{$periodes->periode_name}}" class="form-control">
+                        {{ $errors->first('periode_name'),'<p class="text-danger">:message</p>' }}
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>#</label>
                         <button type="submit" class="btn-fill-lg btn-block btn-gradient-yellow btn-hover-bluedark">Enregistrer</button>
                     </div>

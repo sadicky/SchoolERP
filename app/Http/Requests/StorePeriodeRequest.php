@@ -23,7 +23,8 @@ class StorePeriodeRequest extends FormRequest
     {
         return [
             //
-            'periode' => 'required',
+            'periode_name' => 'required',
+            'category_option_id' => 'required',
         ];
     }
 }
