@@ -12,11 +12,10 @@
         <a href="#" class="nav-link"><i class="flaticon-couple"></i><span>Parents</span></a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link"><i
-                class="flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i><span>Classes</span></a>
+        <a href="{{route('classes.index')}}" class="nav-link"><i class="flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i><span>Classes</span></a>
     </li>
     <li class="nav-item">
-        <a href="all-subject.html" class="nav-link"><i class="flaticon-open-book"></i><span>Cours</span></a>
+        <a href="{{route('cours.index')}}" class="nav-link"><i class="flaticon-open-book"></i><span>Cours</span></a>
     </li>
     <li class="nav-item">
         <a href="class-routine.html" class="nav-link"><i class="flaticon-calendar"></i><span>Horaires

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnneeScolaireController;
 use App\Http\Controllers\CatFraisController;
 use App\Http\Controllers\CatPrimeController;
+use App\Http\Controllers\ClasseController;
+use App\Http\Controllers\CoursController;
 use App\Http\Controllers\FraisController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\OptionController;
@@ -57,3 +59,12 @@ Route::patch('/categories_frais/{id}/affecter', [CatFraisController::class,'affe
 
 //CATEGORIES PRIME
 Route::resource('categories_primes', CatPrimeController::class);
+
+
+//CLASSES
+Route::resource('classes', ClasseController::class);
+Route::get('/classes/get-options/{section_id}', [ClasseController::class,'get_options'])->name('get_option');
+
+
+//COURS
+Route::resource('cours', CoursController::class);

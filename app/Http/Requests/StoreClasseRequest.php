@@ -11,7 +11,7 @@ class StoreClasseRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,16 @@ class StoreClasseRequest extends FormRequest
     {
         return [
             //
+            'classe_name' => 'required',
+            'option_id' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'classe_name.required' => 'Le champ Classe est obligatoire',
+            'option_id.required' => 'Le champ option est obligatoire',
         ];
     }
 }

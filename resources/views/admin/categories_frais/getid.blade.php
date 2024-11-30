@@ -47,8 +47,9 @@
     <div class="card height-auto">
         <div class="card-body">
             <h3>Affecter le prix de ({{$categories_frais->category_name}}) aux catégories</h3>
-            <hr>         
-            <form method="post" action="{{ route('affect_option',$categories_frais->category_frais_id) }}" enctype="multipart/form-data" class="form">
+            <hr>
+            <form method="post" action="{{ route('affect_option',$categories_frais->category_frais_id) }}"
+                enctype="multipart/form-data" class="form">
                 {{ csrf_field() }}
                 @method('PATCH')
                 <div class="row">
@@ -76,11 +77,10 @@
                     </div>
                 </div>
             </form>
-<hr>
-<h3>Listes</h3>
+            <hr>
+            <h3>Listes</h3>
             <table class="table data-table text-nowrap">
                 <thead>
-                    <th>#</th>
                     <th>categories de frais</th>
                     <th>Montant</th>
                     <th>Actions</th>
@@ -89,10 +89,10 @@
                 <tbody>
                     @foreach ($categories_frais_option as $data)
                     <tr>
-                        <td>{{$data->category_frais_option_id}}</td>
-                        <td><a href="{{route('categories.show',$data->category_option_id)}}">{{$data->category}}</a></td>
+                        <td><a href="{{route('categories.show',$data->category_option_id)}}">{{$data->category}}</a>
+                        </td>
                         <td>{{number_format($data->montant, 0, ',', ' ')}} Fc</td>
-                         <td>
+                        <td>
                             <a href="{{route('categories_frais.edit',$categories_frais->category_frais_id)}}"
                                 class=" btn btn-xs btn-success fas fa-edit" title="Modifier">Modifier</a>
                         </td>

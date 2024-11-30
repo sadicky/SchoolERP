@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RequestAnneeScolaire extends FormRequest
+class StoreCoursRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -23,13 +23,6 @@ class RequestAnneeScolaire extends FormRequest
     {
         return [
             //
-            'annee' => 'required',
-        ];
-    }
-    public function messages()
-    {
-        return [
-            'annee.required' => 'Le champ Annee est obligatoire',
         ];
     }
 }
