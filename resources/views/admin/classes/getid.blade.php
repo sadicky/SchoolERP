@@ -14,34 +14,6 @@
                 {{$classes->classe_name}})</li>
         </ul>
     </div>
-
-    @if (session()->has('message'))
-    <div class="ui-alart-box">
-        <div class="icon-color-alart">
-            <div class="alert icon-alart bg-light-green2" role="alert">
-                <i class="far fa-hand-point-right bg-light-green3"></i>
-                {{session()->get('message')}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-    </div>
-    @endif
-
-    @if (session()->has('supprimer'))
-    <div class="ui-alart-box">
-        <div class="icon-color-alart">
-            <div class="alert icon-alart bg-pink2" role="alert">
-                <i class="fas fa-times bg-pink3"></i>
-                {{session()->get('supprimer')}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-    </div>
-    @endif
     <!-- Teacher Payment Area Start Here -->
     <div class="card ui-tab-card">
         <div class="card-body">
@@ -113,7 +85,7 @@
 
     <!-- Teacher Payment Area End Here -->
     <!-- Footer Area Start Here -->
-    @include('layouts.footer');
+    @include('layouts.footer')
     <!-- Footer Area End Here -->
 </div>
 

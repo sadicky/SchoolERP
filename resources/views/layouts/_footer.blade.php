@@ -33,6 +33,7 @@
     <script src="{{asset('assets/js/jquery.scrollUp.min.js')}}"></script>
     <!-- Custom Js -->
     <script src="{{asset('assets/js/main.js')}}"></script>
-    <script src="{{asset('assets/js/ajax/join_section_option.js')}}"></script>
-    {{-- <script src="{{asset('assets/js/ajax/classes.js')}}"></script> --}}
+
+    {{-- My Scripts --}}
+    <script src="{{asset('assets/js/ajax/join_section_option_classe.js')}}"></script>
    

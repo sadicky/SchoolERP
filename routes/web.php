@@ -68,3 +68,9 @@ Route::get('/classes/get-options/{section_id}', [ClasseController::class,'get_op
 
 //COURS
 Route::resource('cours', CoursController::class);
+Route::get('/cours/get-classes/{classe_id}', [CoursController::class,'get_classes']);
+Route::get('/cours/{id}/affecter', [CoursController::class,'affect_classes'])->name('get_classes');
+Route::patch('/cours/{id}/affecter_classe', [CoursController::class,'affect_cours_classe'])->name('cours.affecter');
+
+
+

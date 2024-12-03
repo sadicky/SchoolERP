@@ -2,7 +2,7 @@
 
 @section('title', $title.' | ' . config('app.name'))
 @section('content')
-{{-- {{dd($grades)}} --}}
+{{-- {{dd($cours)}} --}}
 <div class="dashboard-content-one">
     <!-- Breadcubs Area Start Here -->
     <div class="breadcrumbs-area">
@@ -10,7 +10,7 @@
             <li>
                 <a href="/">Dashboard</a>
             </li>
-            <li>Modifier l'Année Scolaire {{$grades->grade_name}}</li>
+            <li>Modifier l'Année Scolaire {{$cours->cours_name}}</li>
         </ul>
     </div>
 
@@ -45,21 +45,15 @@
     <div class="card height-auto">
         <div class="card-body">
 
-            <form method="post" action="{{ route('grades.update',$grades->grade_id) }}" enctype="multipart/form-data"
+            <form method="post" action="{{ route('cours.update',$cours->cours_id) }}" enctype="multipart/form-data"
                 class="form">
                 {{ csrf_field() }}
                 {{method_field('PUT')}}
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
-                        <label>Grade/Niveau</label>
-                        <input type="text" name="grade_name" value="{{$grades->grade_name}}" class="form-control">
-                        {{ $errors->first('grade_name'),'<p class="text-danger">:message</p>' }}
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-12 form-group {{$errors->has('salaireBase') ? 'has-error':''}}">
-                        <label>Salaire de Base(FC)</label>
-                        <input type="text" class="form-control "
-                            value="{{$grades->salaireBase}}" name='salaireBase'>
-                        {{ $errors->first('salaireBase'),'<code>:message</code>' }}
+                        <label>Cours</label>
+                        <input type="text" name="cours_name" value="{{$cours->cours_name}}" class="form-control">
+                        {{ $errors->first('cours_name'),'<p class="text-danger">:message</p>' }}
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>#</label>

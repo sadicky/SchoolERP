@@ -10,48 +10,73 @@
             <li>
                 <a href="/">Dashboard</a>
             </li>
-            <li>Detail sur la grade {{$grades->grade_name}}</li>
+            <li>Detail sur le cours: {{$cours->cours_name}}</li>
         </ul>
     </div>
-
-    @if (session()->has('message'))
-    <div class="ui-alart-box">
-        <div class="icon-color-alart">
-            <div class="alert icon-alart bg-light-green2" role="alert">
-                <i class="far fa-hand-point-right bg-light-green3"></i>
-                {{session()->get('message')}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-    </div>
-    @endif
-
-    @if (session()->has('supprimer'))
-    <div class="ui-alart-box">
-        <div class="icon-color-alart">
-            <div class="alert icon-alart bg-pink2" role="alert">
-                <i class="fas fa-times bg-pink3"></i>
-                {{session()->get('supprimer')}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-    </div>
-    @endif
     <!-- Teacher Payment Area Start Here -->
-    <div class="card height-auto">
-        <div class="card-body">
-            <h3> Grade => {{$grades->grade_name}} : {{number_format($grades->salaireBase, 0, ',', ' ')}} Fc</h3>
-            <a href="{{route('grades.edit',$grades->grade_id)}}" class="fas fa-edit text-dark-pastel-green" title="Modifier"></a>
-
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card ui-tab-card">
+                <div class="card-body">
+                    <div class="border-nav-tab">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#info" role="tab"
+                                    aria-selected="true">Classes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#eleves" role="tab"
+                                    aria-selected="false">Présence</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#paiements" role="tab"
+                                    aria-selected="false">Examens</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#presences" role="tab"
+                                    aria-selected="false">Notes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#presences" role="tab"
+                                    aria-selected="false">Résultats</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="info" role="tabpanel">
+                                <table class="table data-table text-nowrap table-condensed table-stripped">
+                                    <thead>
+                                        <tr>
+                                            <th>Section</th>
+                                            <th>Option</th>
+                                            <th>Classes</th>
+                                            <th>Ponderation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($coursClasses as $item)
+                                        <tr>
+                                            <td>{{$item->section_name}}</td>
+                                            <td>{{$item->option_name}}</td>
+                                            <td>{{$item->classe_name}}</td>
+                                            <td>{{$item->ponderation}} pts</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <a href="{{route('get_classes',$cours->cours_id)}}"
+                                    class=" btn btn-lg btn-success fas fa-random" title="Affecter">Affecter</a>
+                                <a href="{{route('cours.edit',$cours->cours_id)}}"
+                                    class="btn btn-lg btn-info fas fa-edit " title="Modifier"> Modifier</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Teacher Payment Area End Here -->
     <!-- Footer Area Start Here -->
-    @include('layouts.footer');
+    @include('layouts.footer')
     <!-- Footer Area End Here -->
 </div>
 

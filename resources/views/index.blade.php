@@ -361,6 +361,7 @@
             </div>
         </div>
     </div>
+</div>
     <!-- Dashboard Content End Here -->
     <!-- Footer Area Start Here -->
     @include('layouts.footer');
