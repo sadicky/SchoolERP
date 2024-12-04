@@ -29,6 +29,10 @@ Route::get('/', function () {
 });
 
 //ANNEES SCOLAIRES
+Route::get('/annees/annees_passees', [AnneeScolaireController::class, 'annees_passees'])->name('annees.annees_passees');
+Route::get('/annees/{id}/restore', [AnneeScolaireController::class, 'restore'])->name('annees.restore');
+Route::delete('/annees/{id}/force-delete', [AnneeScolaireController::class, 'forceDelete'])->name('annees.force_delete'); 
+
 Route::resource('annees', AnneeScolaireController::class);
 Route::patch('/annees/{id}/actif', [AnneeScolaireController::class,'actif'])->name('actif');
 Route::patch('/annees/{id}/deactif', [AnneeScolaireController::class,'deactif'])->name('deactif');

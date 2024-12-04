@@ -45,6 +45,9 @@
     <div class="modal-box pull-right">
         <button type="button" class="modal-trigger" data-toggle="modal" data-target="#add-annee">Ajouter Une Année
             Scolaire</button>
+        <a href="{{route('annees.annees_passees')}}" class="btn btn-danger btn-lg">
+            L'années passées
+        </a>    
     </div>
     <!-- Teacher Payment Area Start Here -->
     <div class="card height-auto">
