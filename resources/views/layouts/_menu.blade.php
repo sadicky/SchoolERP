@@ -3,7 +3,7 @@
         <a href="/" class="nav-link"><i class="flaticon-dashboard"></i><span>Dashboard</span></a>
     </li>
     <li class="nav-item ">
-        <a href="#" class="nav-link"><i class="flaticon-classmates"></i><span>Elèves</span></a>
+        <a href="{{route('eleves.index')}}" class="nav-link"><i class="flaticon-classmates"></i><span>Elèves</span></a>
     </li>
     <li class="nav-item">
         <a href="#" class="nav-link"><i class="flaticon-multiple-users-silhouette"></i><span>Enseignants</span></a>

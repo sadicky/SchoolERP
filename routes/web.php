@@ -12,6 +12,7 @@ use App\Http\Controllers\GradeController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\SectionController;
+use App\Http\Controllers\EleveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,4 +78,5 @@ Route::get('/cours/{id}/affecter', [CoursController::class,'affect_classes'])->n
 Route::patch('/cours/{id}/affecter_classe', [CoursController::class,'affect_cours_classe'])->name('cours.affecter');
 
 
-
+//Eleves
+Route::resource('eleves', EleveController::class);
