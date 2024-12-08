@@ -6,13 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
-class Eleve extends Model
+class Enseignant extends Model
 {
     use HasFactory, SoftDeletes;
-
-    protected $table="tbl_eleves";
-    protected $primaryKey = 'eleve_id';
+    protected $table="tbl_enseignants";
+    protected $primaryKey = 'enseignant_id';
     
     public $fillable = [
         'nom',
@@ -22,15 +20,14 @@ class Eleve extends Model
         'contact',
         'sexe',
         'adresse',
+        'description',
         'nationalite',
         'groupe_sanguin',
-        'date_naissance',
-        'provenance',
-        'classe_id ',
+        'image',
+        'category_option_id',
+        'grade',
         'user_id ',
         'status'
     ];
     public $timestamps = false;
-
-   
 }

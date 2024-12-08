@@ -153,8 +153,8 @@ class EleveController extends Controller
     public function destroy(string $id)
     {
         //
-        $post = Eleve::findOrFail($id);
-        $post->delete();
+        $eleve = Eleve::findOrFail($id);
+        $eleve->delete();
 
         return redirect()->route('eleves.index');
     }

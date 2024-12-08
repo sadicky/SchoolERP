@@ -13,6 +13,7 @@ use App\Http\Controllers\OptionController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\EleveController;
+use App\Http\Controllers\EnseignantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,3 +85,9 @@ Route::get('/eleves/{id}/restore', [EleveController::class, 'restore'])->name('e
 Route::delete('/eleves/{id}/force-delete', [EleveController::class, 'forceDelete'])->name('eleves.force_delete'); 
 
 Route::resource('eleves', EleveController::class);
+
+//Enseignants
+Route::get('/enseignants/{id}/restore', [EnseignantController::class, 'restore'])->name('enseignants.restore');
+Route::delete('/enseignants/{id}/force-delete', [EnseignantController::class, 'forceDelete'])->name('enseignants.force_delete');
+
+Route::resource('enseignants', EnseignantController::class);
