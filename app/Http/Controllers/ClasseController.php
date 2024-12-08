@@ -14,11 +14,11 @@ class ClasseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() 
     {
         //
         $title = "Classes";
-        $sections = Section::all();
+        $sections = Section::all(); 
         $options = Option::all();
         $classes = DB::table('tbl_classes as c')
         ->join('tbl_options as o', 'o.option_id','=','c.option_id')

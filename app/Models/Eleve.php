@@ -30,5 +30,10 @@ class Eleve extends Model
         'user_id ',
         'status'
     ];
-    
+    public $timestamps = false;
+
+    public function classe(){
+
+        return $this->belongsTo(Classe::class);
+    }
 }

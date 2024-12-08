@@ -41,14 +41,57 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    @php
+                        $i = 1;
+                    @endphp
+                    @foreach ($eleves as $eleve)
+                        <tr>
+                            <td>{{$i}}</td>
+                            <td>
+                                <a href="{{route('eleves.show', $eleve->eleve_id)}}">
+                                    {{$eleve->nom}}
+                                </a>
+                            </td>
+                            <td>{{$eleve->prenom}}</td>
+                            <td>{{$eleve->contact}}</td>
+                            <td>{{$eleve->classe_name}}</td>
+                            <td>
+                                @if ($eleve->deleted_at != '')
+                                <a href="{{route('eleves.restore',$eleve->eleve_id)}}"
+                                    class=" btn btn-xs btn-warning fas fa-edit" title="Modifier">
+                                    Restaurer 
+                                </a>
+                                <form action="{{route('eleves.force_delete', $eleve->eleve_id)}}" method="POST"
+                                    style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-xs btn-danger fa fa-trash"
+                                        onclick="return confirm('Êtes-vous sûr de vouloir faire cette action ?')">
+                                        Supprimer complètement
+                                    </button>
+                                </form>
+                                
+                                @else
+                                <form action="{{route('eleves.destroy', $eleve->eleve_id)}}" method="POST"
+                                    style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-xs btn-danger fa fa-trash"
+                                        onclick="return confirm('Êtes-vous sûr de vouloir faire cette action ?')">
+                                        Supprimer
+                                    </button>
+                                </form>
+                                <a href="{{route('eleves.edit',$eleve->eleve_id)}}"
+                                    class=" btn btn-xs btn-success fas fa-edit" title="Modifier">
+                                    Modifier
+                                </a>
+                                @endif
+                            </td>
+                        </tr>
+                    @php
+                        $i++;
+                    @endphp    
+                    @endforeach
                 </tbody>
             </table> 
         </div>

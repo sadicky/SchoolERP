@@ -79,4 +79,8 @@ Route::patch('/cours/{id}/affecter_classe', [CoursController::class,'affect_cour
 
 
 //Eleves
+
+Route::get('/eleves/{id}/restore', [EleveController::class, 'restore'])->name('eleves.restore');
+Route::delete('/eleves/{id}/force-delete', [EleveController::class, 'forceDelete'])->name('eleves.force_delete'); 
+
 Route::resource('eleves', EleveController::class);
