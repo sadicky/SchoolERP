@@ -10,6 +10,7 @@
             <li>
                 <a href="/">Dashboard</a>
             </li>
+            <li>Admin</li>
         </ul>
     </div>
     <!-- Breadcubs Area End Here -->
@@ -77,18 +78,16 @@
                     <div class="col-6">
                         <div class="item-content">
                             <div class="item-title">Earnings</div>
-                            <div class="item-number"><span>$</span><span class="counter"
-                                    data-num="193000">1,93,000</span></div>
+                            <div class="item-number"><span>$</span><span class="counter" data-num="193000">1,93,000</span></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-<!-- Footer Area Start Here -->
-@include('layouts.footer');
-<!-- Footer Area End Here -->
-</div>
-<!-- Dashboard Content End Here -->
+    <!-- Dashboard summery End Here -->
+    <!-- Dashboard Content End Here -->
+    <!-- Footer Area Start Here -->
+    @include('layouts.footer');
+    <!-- Footer Area End Here -->
 @endsection

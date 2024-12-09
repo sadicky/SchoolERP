@@ -110,4 +110,31 @@ class AnneeScolaireController extends Controller
         session()->flash('desactif','Activer avec succes');
         return redirect()->route('annees.index');
     }
+
+    public function annees_passees()
+    {
+        $title = 'Les Années passées';
+        $annees = AnneeScolaire::onlyTrashed()->get();
+        return view('admin.annees.anneepassee', compact('annees','title'));
+    }
+
+        // Restore deleted item
+    public function restore($id)
+    {
+
+            $annee = AnneeScolaire::onlyTrashed()->findOrFail($id);
+            $annee->restore();
+    
+            return redirect()->back();
+    }
+        
+        // Delete item completely
+    public function forceDelete($id)
+    {
+            
+            $annee = AnneeScolaire::onlyTrashed()->findOrFail($id);     
+            $annee->forceDelete();
+    
+            return redirect()->back();
+    } 
 }
