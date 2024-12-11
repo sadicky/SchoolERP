@@ -16,7 +16,7 @@
 
     <!-- Row -->
     <div class="modal-box pull-right">
-        <a href="{{route('eleves.index')}}" class="btn btn-lg btn-success">Tous les Enseignants</a>
+        <a href="{{route('enseignants.index')}}" class="btn btn-lg btn-success">Tous les Enseignants</a>
         <hr>
     </div>
     <!-- Teacher Payment Area Start Here --> 
@@ -24,41 +24,48 @@
         <div class="card-body">
             <div class="heading-layout1">
                 <div class="item-title">
-                    <h3>Ajout d'un nouvel Enseignant</h3>
+                    <h3>Modifier les donnees de l'Enseignant {{$enseignant->nom}}</h3>
                 </div>
 
             </div>
             <hr>
-            <form method="post" action="{{route('enseignants.store')}}" enctype="multipart/form-data" class="form">
+            <form method="post" action="{{route('enseignants.update', $enseignant->enseignant_id)}}" enctype="multipart/form-data" class="form">
                 {{ csrf_field() }}
+                @method('PUT')
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Nom</label>
-                        <input type="text" name="nom" placeholder="Nom" class="form-control">
+                        <input type="text" name="nom" value="{{$enseignant->nom}}" class="form-control">
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Prénom</label>
-                        <input type="text" name="prenom" placeholder="Prénom" class="form-control">
+                        <input type="text" name="prenom" value="{{$enseignant->prenom}}" class="form-control">
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Post-nom</label>
-                        <input type="text" name="postnom" placeholder="Post-nom" class="form-control">
+                        <input type="text" name="postnom" value="{{$enseignant->postnom}}" class="form-control">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>E-mail</label>
-                        <input type="email" name="email" placeholder="E-mail" class="form-control">
+                        <input type="email" name="email" value="{{$enseignant->email}}" class="form-control">
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Contact</label>
-                        <input type="number" name="contact" placeholder="Contact" class="form-control">
+                        <input type="number" name="contact" value="{{$enseignant->contact}}" class="form-control">
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Sexe</label>
                         <select name="sexe" id="" class="form-control">
-                            <option selected readonly>Sélectionner</option>
+                            <option selected value="{{$enseignant->sexe}}">
+                                @if ($enseignant->sexe == 'F')
+                                Féminin
+                                @else
+                                Masculin
+                                @endif
+                            </option>
                             <option value="M">Masculin</option>
                             <option value="F">Féminin</option>
                         </select>
@@ -68,12 +75,14 @@
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Adresse</label>
-                        <input type="text" name="adresse" placeholder="Adresse" class="form-control">
+                        <input type="text" name="adresse" value="{{$enseignant->adresse}}" class="form-control">
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Nationalite</label>
                         <select name="nationalite" id="" class="form-control">
-                            <option selected readonly>Selectionner</option>
+                            <option selected value="{{$enseignant->nationalite}}">
+                                {{$enseignant->nationalite}}
+                            </option>
                             <option value="Congolaise">RDC</option>
                             <option value="Burundaise">Burundi</option>
                             <option value="Kenyan">Kenya</option>
@@ -81,8 +90,10 @@
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Groupe Sanguin</label>
-                        <select name="groupe_sanguin" id="" class="form-control select2">
-                            <option selected readonly>Sélectionner</option>
+                        <select name="groupe_sanguin" id="" class="form-control">
+                            <option selected value="{{$enseignant->groupe_sanguin}}">
+                                {{$enseignant->groupe_sanguin}}
+                            </option>
                             <option value="O+">O+</option>
                             <option value="O-">O-</option>
                             <option value="A+">A+</option>
@@ -96,23 +107,16 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-12 form-group">
-                        <label>Image</label>
-                        <input type="file" name="image" class="form-control">
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-12 form-group">
+                    <div class="col-xl-6 col-lg-6 col-12 form-group">
                         <label>Grade</label>
-                        <select class="form-control select2" name="grade" id="grade">
-                            <option value="">--Selectionner--</option>
-                            @foreach ($grades as $grade)
-                                <option value="{{$grade->grade_id}}">{{$grade->grade_name}}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" name="grade" value="{{$enseignant->grade}}" class="form-control">
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-12 form-group">
+                    <div class="col-xl-6 col-lg-6 col-12 form-group">
                         <label>Classe Option</label>
-                        <select name="category_option_id" id="" class="form-control select2">
-                            <option selected value="">Selectionner</option>
+                        <select name="category_option_id" id="" class="form-control">
+                            <option selected value="{{$enseignant->category_option_id}}">
+                                <b>{{$enseignant->category}}</b>
+                            </option>
                             @foreach ($category_options as $category_option)
                                 <option value="{{$category_option->category_option_id}}">
                                     {{$category_option->category}}
@@ -125,7 +129,7 @@
                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                         <label>Description</label>
                         <textarea name="description" id="" cols="30" rows="10" class="form-control">
-                            
+                            {{$enseignant->description}}
                         </textarea>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-12 form-group">
@@ -146,7 +150,7 @@
                @endforeach
             @endif
         </div>
-    </div> 
+    </div>
     <!-- Teacher Payment Area End Here -->
     <!-- Footer Area Start Here -->
     @include('layouts.footer')

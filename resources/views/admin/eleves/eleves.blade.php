@@ -13,7 +13,19 @@
             <li>{{$title}}</li>
         </ul> 
     </div>
-
+    @if (session()->has('message'))
+    <div class="ui-alart-box">
+        <div class="icon-color-alart">
+            <div class="alert icon-alart bg-light-green2" role="alert">
+                <i class="far fa-hand-point-right bg-light-green3"></i>
+                {{session()->get('message')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    @endif
     <!-- Row -->
     <div class="modal-box pull-right">
         {{-- <button type="button" class="modal-trigger" data-toggle="modal" data-target="#add-eleve">Ajouter un Elève</button> --}}
@@ -33,9 +45,9 @@
             <table class="table data-table text-nowrap">
                 <thead>
                     <th>#</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>contact</th>
+                    <th>Noms</th>
+                    <th>Section</th>
+                    <th>Option</th>
                     <th>classe</th>
                     <th>Actions</th>
                     </tr>
@@ -49,11 +61,11 @@
                             <td>{{$i}}</td>
                             <td>
                                 <a href="{{route('eleves.show', $eleve->eleve_id)}}">
-                                    {{$eleve->nom}}
+                                    {{$eleve->nom}} {{$eleve->prenom}} {{$eleve->postnom}}
                                 </a>
                             </td>
-                            <td>{{$eleve->prenom}}</td>
-                            <td>{{$eleve->contact}}</td>
+                            <td>{{$eleve->section_name}}</td>
+                            <td>{{$eleve->option_name}}</td>
                             <td>{{$eleve->classe_name}}</td>
                             <td>
                                 @if ($eleve->deleted_at != '')

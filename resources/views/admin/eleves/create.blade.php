@@ -26,6 +26,7 @@
                 <div class="item-title">
                     <h3>Admission</h3>
                 </div>
+                <br>
 
             </div>
             <hr>
@@ -57,9 +58,8 @@
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Sexe</label>
-                        <select name="sexe" id="" class="form-control">
-                            <option selected readonly>Sélectionner</option>
-                            <option value="M">Masculin</option>
+                        <select name="sexe" id="sexe" class="form-control select2">
+                            <option value="M" selected>Masculin</option>
                             <option value="F">Féminin</option>
                         </select>
                     </div>
@@ -72,17 +72,18 @@
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Nationalite</label>
-                        <select name="nationalite" id="" class="form-control">
+                        <select name="nationalite" id="" class="form-control select2">
                             <option selected readonly>Selectionner</option>
                             <option value="Congolaise">RDC</option>
                             <option value="Burundaise">Burundi</option>
+                            <option value="Rwanda">Rwanda</option>
                             <option value="Kenyan">Kenya</option>
                         </select>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Groupe Sanguin</label>
-                        <select name="groupe_sanguin" id="" class="form-control">
-                            <option selected readonly>Sélectionner</option>
+                        <select name="groupe_sanguin" id="" class="form-control select2">
+                            <option selected value="">Sélectionner</option>
                             <option value="O+">O+</option>
                             <option value="O-">O-</option>
                             <option value="A+">A+</option>
@@ -96,48 +97,134 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-12 form-group">
+                    <div class="col-xl-6 col-lg-4 col-12 form-group">
                         <label>Date de naissance</label>
                         <input type="date" name="date_naissance" class="form-control">
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-12 form-group">
+                    <div class="col-xl-6 col-lg-4 col-12 form-group">
                         <label>Provenance</label>
                         <input type="text" name="provenance" placeholder="Provenance" class="form-control">
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-12 form-group">
-                        <label>Classe</label>
-                        <select name="classe_id" id="" class="form-control">
-                            <option selected readonly>Selectionner</option>
-                            @foreach ($classes as $classe)
-                                <option value="{{$classe->classe_id}}">
-                                    {{$classe->classe_name}}
-                                </option>
+                </div>
+
+                
+                <div class="row">
+                    <div class="col-xl-4 col-lg-6 col-12 form-group ">
+                        <label>Section</label>
+                        <select class="form-control select2 section" id='section_id' name='section_id'>
+                            <option value="">Choisir la section</option>
+                            @foreach($sections as $section)
+                            <option value="{{$section->section_id}}">{{$section->section_name}}</option>
                             @endforeach
                         </select>
+                        {{ $errors->first('section_id'),'<code>:message</code>' }}
+                    </div>
+                    <div
+                        class="col-xl-4 col-lg-6 col-12 form-group {{$errors->has('option_id') ? 'has-error':''}}">
+                        <label>Option</label>
+                        <select disabled required class="form-control select2" id='option_id' name='option_id[]'>
+                            <option value="" selected>Choisir la section d'abord</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-12 form-group">
+                        <label>Classe</label>
+                        <select type="text" id="classe_id" name="classe_id" placeholder="1e A" class="form-control select2"></select>
                     </div>
                 </div>
+                <hr>
+                <div class="heading-layout1">
+                <div class="item-title">
+                    <h4>Tuteur</h4>
+                </div>
+                </div>
                 <div class="row">
-                    {{-- <div class="col-xl-4 col-lg-4 col-12 form-group">
+                    <div class="col-xl-4 col-lg-6 col-12 form-group ">
+                        <label>Téléphone</label>
+                        <input autocomplete="false" type="text" class="form-control" id='tuteur_tel' name='tuteur_tel'>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-12 form-group ">
+                        <label>Relation</label>
+                        <input type="text" autocomplete="false"  class="form-control" id='tuteur_relation' name='tuteur_relation'>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-12 form-group {{$errors->has('tuteur_nom') ? 'has-error':''}}">
                         <label>Nom</label>
-                        <input type="text" name="category" placeholder="Maternelle" class="form-control">
-                    </div> --}}
+                        <input type="text" autocomplete="false"  class="form-control" id='tuteur_nom' name='tuteur_nom'>
+                        {{ $errors->first('tuteur_nom'),'<code>:message</code>' }}
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group {{$errors->has('tuteur_prenom') ? 'has-error':''}}">
+                        <label>Prenom</label>
+                        <input type="text" autocomplete="false"  class="form-control" id='tuteur_prenom' name='tuteur_prenom'>
+                        {{ $errors->first('tuteur_prenom'),'<code>:message</code>' }}
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group {{$errors->has('tuteur_postnom') ? 'has-error':''}}">
+                        <label>Postnom</label>
+                        <input type="text" class="form-control" autocomplete="false"  id='tuteur_postnom' name='tuteur_postnom'>
+                        {{ $errors->first('tuteur_postnom'),'<code>:message</code>' }}
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group " >
+                        <label>Email</label>
+                        <input type="text" autocomplete="false"  class="form-control"  id='tuteur_email' name='tuteur_email'>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group " >
+                        <label>Sexe</label>
+                        <select class="form-control" id='tuteur_sexe' name='tuteur_sexe'>
+                            <option value="M">M</option>
+                            <option value="F">F</option>
+                        </select>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-12 form-group ">
+                        <label>Profession</label>
+                        <input type="text" autocomplete="false"  class="form-control" id='tuteur_job' name='tuteur_job'>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-12 form-group " >
+                        <label>Nationalité</label>
+                        <input type="text" autocomplete="false"  class="form-control" id='tuteur_nat' name='tuteur_nat'>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-12 form-group">
+                        <label>Adresse</label>
+                        <textarea class="form-control" id='tuteur_adresse' autocomplete="false"  name='tuteur_adresse'></textarea>
+                    </div>
+                </div>
+                <hr> 
+                <div class="heading-layout1">
+                <div class="item-title">
+                <h4>Frais d'inscription</h4>
+            </div>
+            </div>
+                
+                <div class="row">
+                    <div class="col-xl-4 col-lg-6 col-12 form-group">
+                        <label>Frais d'Inscription</label>
+                        <input type="text" readonly class="form-control" id='frais' name='frais'>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-12 form-group">
+                        <label>Payer</label>
+                        <select name="payer" id="payer" class="form-control">
+                            <option value="0" selected>Non</option>
+                            <option value="1">Oui</option>
+                        </select>
+                     </div>
+                </div>
+                <div class="row">
                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                         <label>#</label>
                         <button type="submit" class="btn-fill-lg btn-block btn-gradient-yellow btn-hover-bluedark">Enregistrer</button>
                     </div>
                 </div>
-            </form><br>
-            {{-- Check if there are any errors --}}
-            @if ($errors->any())
-               @foreach ($errors->all() as $error)
-               <div class="alert alert-danger" role="alert">
-                {{$error}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-               @endforeach
-            @endif
+            </form>
+
+                              {{-- Check if there are any errors --}}
+                              @if ($errors->any())
+                              @foreach ($errors->all() as $error)
+                              <div class="alert alert-danger" role="alert">
+                               {{$error}}
+                               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                   <span aria-hidden="true">&times;</span>
+                               </button>
+                                </div>
+                              @endforeach
+                           @endif
+                  
         </div>
     </div>
     <!-- Teacher Payment Area End Here -->

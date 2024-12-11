@@ -25,8 +25,6 @@
     <script src="{{asset('assets/js/select2.min.js')}}"></script>
     <!-- Data Table Js -->
     <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
-    <!-- Smoothscroll Js -->
-    <script src="{{asset('assets/js/jquery.smoothscroll.min.js')}}"></script>
     <!-- Date Picker Js -->
     <script src="{{asset('assets/js/datepicker.min.js')}}"></script>
     <!-- Scroll Up Js -->
@@ -36,4 +34,6 @@
 
     {{-- My Scripts --}}
     <script src="{{asset('assets/js/ajax/join_section_option_classe.js')}}"></script>
+    <script src="{{asset('assets/js/ajax/section.js')}}"></script>
+    <script src="{{asset('assets/js/ajax/eleves.js')}}"></script>
    

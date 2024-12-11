@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use File;
+use App\Models\Role;
+use App\Models\Grade;
+use App\Models\Category;
+use App\Models\Enseignant;
+use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Enseignant;
-use App\Models\Category;
-use File;
 
 class EnseignantController extends Controller
 {
@@ -17,7 +20,9 @@ class EnseignantController extends Controller
     {
         //
         $title = "Gestion des enseignants"; 
-        $enseignants = DB::table('tbl_enseignants as e')->join('tbl_category_options as c', 'c.category_option_id','=','e.category_option_id')
+        $enseignants = DB::table('tbl_enseignants as e')
+        ->join('tbl_category_options as c', 'c.category_option_id','=','e.category_option_id')
+        ->join('tbl_grades as g', 'g.grade_id','=','e.grade')
         ->get();
 
         return view('admin.enseignants.enseignants',compact('title', 'enseignants'));
@@ -32,7 +37,8 @@ class EnseignantController extends Controller
         $title = 'Nouvel Enseignant';
 
         $category_options = Category::all();
-        return view('admin.enseignants.create', compact('title', 'category_options'));
+        $grades = Grade::all();
+        return view('admin.enseignants.create', compact('title', 'category_options', 'grades'));
     }
 
     /**
@@ -51,6 +57,18 @@ class EnseignantController extends Controller
             'nationalite' => ['required', 'max:255'],
             'grade' => ['required', 'max:255'],
             'category_option_id' => ['required', 'max:255'],
+        ]);
+
+        $stringE = "0123456789";
+        $stringE = str_shuffle($stringE);
+        $matriculeE = substr($stringE, 0, 6);
+
+        $userE = Utilisateur::create([
+            'matricule' => $matriculeE,
+            'pwd' => bcrypt('123456'),
+            'role_id' => Role::where('role_name', 'Enseignant')->firstOrFail()->role_id,
+            'status' => '1'
+
         ]);
             
         //
@@ -73,7 +91,7 @@ class EnseignantController extends Controller
 
         $enseignant->grade = $request->grade;
         $enseignant->category_option_id = $request->category_option_id;
-        $enseignant->user_id = $request->user_id;
+        $enseignant->user_id = $userE->user_id;
         $enseignant->status = 1;
         $enseignant->save();
 
@@ -90,6 +108,7 @@ class EnseignantController extends Controller
 
         $enseignant = DB::table('tbl_enseignants as e')
         ->join('tbl_category_options as c', 'c.category_option_id','=','e.category_option_id')
+        ->join('tbl_grades as g', 'g.grade_id','=','e.grade')
         ->where('e.enseignant_id','=',$id)->first();
         return view('admin.enseignants.enseignant', compact('enseignant','title'));
     }

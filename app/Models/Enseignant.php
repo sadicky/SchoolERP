@@ -12,6 +12,8 @@ class Enseignant extends Model
     protected $table="tbl_enseignants";
     protected $primaryKey = 'enseignant_id';
     
+    protected $guard = "enseignants";
+    
     public $fillable = [
         'nom',
         'prenom',

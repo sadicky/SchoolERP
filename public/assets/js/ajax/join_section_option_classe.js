@@ -46,7 +46,7 @@ $(document).ready(function () {
                 },
                 error: function(xhr){
                     if(xhr.status===404){
-                        classe_id.html("<option value='' selected>Aucune Option</option>").prop('disabled',true);
+                        classe_id.html("<option value='' selected>Aucune Classe</option>").prop('disabled',true);
                     }
                 }
 

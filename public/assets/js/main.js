@@ -4,6 +4,7 @@
   /*-------------------------------------
       Sidebar Toggle Menu
     -------------------------------------*/
+  $('body').css('zoom','90%');
   $('.sidebar-toggle-view').on('click', '.sidebar-nav-item .nav-link', function (e) {
     if (!$(this).parents('#wrapper').hasClass('sidebar-collapsed')) {
       var animationSpeed = 300,

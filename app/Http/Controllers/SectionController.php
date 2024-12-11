@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Section;
 use App\Models\Category;
+use App\Models\FraisCategory;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreSectionRequest;
 use App\Http\Requests\UpdateSectionRequest;
 
 class SectionController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      */
     public function index()
@@ -105,5 +106,24 @@ class SectionController extends Controller
     public function destroy(Section $section)
     {
         //
+    }
+
+    
+    public function get_inscription($section_id)
+    {
+        //
+               $options = DB::table('tbl_category_frais as cf','montant')
+         ->join('tbl_category_frais_option as cfo', 'cfo.category_frais_id','=','cf.category_frais_id')
+         ->join('tbl_section as s', 's.section_id','=','cfo.category_option_id')
+         ->where('cf.category_frais_id','=',3)
+         ->where('s.section_id', '=',$section_id)
+         ->get();
+        if($options->isEmpty()){
+            return response()->json(['message'=>'Aucun Frais Dispo'],404);
+        }
+        return response()->json($options);
+            
+        // return response()->json( [
+        //     'montant'=>$options->montant]);
     }
 }

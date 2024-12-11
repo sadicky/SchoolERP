@@ -9,7 +9,7 @@
         <a href="{{route('enseignants.index')}}" class="nav-link"><i class="flaticon-multiple-users-silhouette"></i><span>Enseignants</span></a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link"><i class="flaticon-couple"></i><span>Parents</span></a>
+        <a href="{{route('parents.index')}}" class="nav-link"><i class="flaticon-couple"></i><span>Parents</span></a>
     </li>
     <li class="nav-item">
         <a href="{{route('classes.index')}}" class="nav-link"><i class="flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i><span>Classes</span></a>

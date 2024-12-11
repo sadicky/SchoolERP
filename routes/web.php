@@ -14,6 +14,7 @@ use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\EleveController;
 use App\Http\Controllers\EnseignantController;
+use App\Http\Controllers\TuteurController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,6 @@ Route::get('/', function () {
 Route::get('/annees/annees_passees', [AnneeScolaireController::class, 'annees_passees'])->name('annees.annees_passees');
 Route::get('/annees/{id}/restore', [AnneeScolaireController::class, 'restore'])->name('annees.restore');
 Route::delete('/annees/{id}/force-delete', [AnneeScolaireController::class, 'forceDelete'])->name('annees.force_delete'); 
-
 Route::resource('annees', AnneeScolaireController::class);
 Route::patch('/annees/{id}/actif', [AnneeScolaireController::class,'actif'])->name('actif');
 Route::patch('/annees/{id}/deactif', [AnneeScolaireController::class,'deactif'])->name('deactif');
@@ -48,6 +48,8 @@ Route::resource('periodes', PeriodeController::class);
 
 //SECTIONS
 Route::resource('sections', SectionController::class);
+Route::get('/sections/get-inscription/{section_id}', [SectionController::class,'get_inscription'])->name('get_inscription');
+
 
 //OPTIONS
 Route::resource('options', OptionController::class);
@@ -82,12 +84,14 @@ Route::patch('/cours/{id}/affecter_classe', [CoursController::class,'affect_cour
 //Eleves
 
 Route::get('/eleves/{id}/restore', [EleveController::class, 'restore'])->name('eleves.restore');
+Route::get('/eleves/check-tutor', [EleveController::class, 'checkTutor']);
 Route::delete('/eleves/{id}/force-delete', [EleveController::class, 'forceDelete'])->name('eleves.force_delete'); 
-
 Route::resource('eleves', EleveController::class);
 
 //Enseignants
 Route::get('/enseignants/{id}/restore', [EnseignantController::class, 'restore'])->name('enseignants.restore');
 Route::delete('/enseignants/{id}/force-delete', [EnseignantController::class, 'forceDelete'])->name('enseignants.force_delete');
-
 Route::resource('enseignants', EnseignantController::class);
+
+//Parents
+Route::resource('parents', TuteurController::class);
