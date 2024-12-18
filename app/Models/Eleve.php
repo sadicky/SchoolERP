@@ -13,8 +13,6 @@ class Eleve extends Model
 
     protected $table="tbl_eleves";
     protected $primaryKey = 'eleve_id';
-
-    protected $guard = "eleves";
     
     public $fillable = [
         'nom',
@@ -30,11 +28,11 @@ class Eleve extends Model
         'provenance',
         'classe_id ',
         'user_id ',
-        'status'
+        'statut'
     ];
     public $timestamps = false;
 
-    public function user(){
+    public function utilisateur(){
         return $this->belongsTo(Utilisateur::class,'user_id');
     }
 

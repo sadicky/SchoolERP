@@ -1,20 +1,22 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AnneeScolaireController;
-use App\Http\Controllers\CatFraisController;
-use App\Http\Controllers\CatPrimeController;
-use App\Http\Controllers\ClasseController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CoursController;
+use App\Http\Controllers\EleveController;
 use App\Http\Controllers\FraisController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\OptionController;
+use App\Http\Controllers\TuteurController;
 use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\SectionController;
-use App\Http\Controllers\EleveController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CatFraisController;
+use App\Http\Controllers\CatPrimeController;
 use App\Http\Controllers\EnseignantController;
-use App\Http\Controllers\TuteurController;
+use App\Http\Controllers\AnneeScolaireController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +28,6 @@ use App\Http\Controllers\TuteurController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('index');
-});
 
 //ANNEES SCOLAIRES
 Route::get('/annees/annees_passees', [AnneeScolaireController::class, 'annees_passees'])->name('annees.annees_passees');
@@ -95,3 +93,60 @@ Route::resource('enseignants', EnseignantController::class);
 
 //Parents
 Route::resource('parents', TuteurController::class);
+
+//Admin
+Route::resource('admins', AdminController::class); 
+
+
+// Route::prefix('admin')->middleware(['auth:admin', 'role:admin'])->group(function () {
+//     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+// });
+
+// Route::prefix('enseignant')->middleware(['auth:enseignant', 'role:enseignant'])->group(function () {
+//     Route::get('/dashboard', [EnseignantController::class, 'index'])->name('enseignant.dashboard');
+// });
+
+
+Route::get('/', function () {
+    return view('admin');
+});
+
+// Admin Login
+Route::get('/admin/login', [AuthController::class, 'showAdminLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AuthController::class, 'adminLogin'])->name('admin.redirect');
+
+// Enseignant Login
+Route::get('/teachers/login', [AuthController::class, 'showEnseignantLoginForm'])->name('teacher.login');
+Route::post('/teachers/login', [AuthController::class, 'enseignantLogin']);
+
+// Parent Login
+Route::get('/tuteurs/login', [AuthController::class, 'showParentLoginForm'])->name('parent.login');
+Route::post('/tuteurs/login', [AuthController::class, 'parentLogin']);
+
+// Élève Login
+Route::get('/students/login', [AuthController::class, 'showEleveLoginForm'])->name('eleve.login');
+Route::post('/students/login', [AuthController::class, 'eleveLogin']);
+
+// Logout
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Dashboards
+Route::middleware(['auth:admin'])->get('/admin/dashboard', function () {
+    return view('dashboard');
+})->name('admin.dashboard');
+
+// Route::group(['middleware' => ['auth:admin']], function () {
+//     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+// });
+
+Route::middleware(['auth:enseignant'])->get('/enseignant/dashboard', function () {
+    return 'Bienvenue Enseignant';
+})->name('enseignant.dashboard');
+
+Route::middleware(['auth:tuteur'])->get('/tuteurs/dashboard', function () {
+    return 'Bienvenue Parent';
+})->name('tuteur.dashboard');
+
+Route::middleware(['auth:eleve'])->get('/students/dashboard', function () {
+    return 'Bienvenue Élève';
+})->name('eleve.dashboard');

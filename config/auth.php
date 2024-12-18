@@ -38,23 +38,23 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'utilisateurs',
         ],
-        'eleves' => [
+        'eleve' => [
             'driver' => 'session',
-            'provider' => 'eleves',
+            'provider' => 'utilisateurs',
         ],
-        'enseignants' => [
+        'enseignant' => [
             'driver' => 'session',
-            'provider' => 'enseignants',
+            'provider' => 'utilisateurs',
         ],
-        'tuteurs' => [
+        'tuteur' => [
             'driver' => 'session',
-            'provider' => 'tuteurs',
+            'provider' => 'utilisateurs',
         ],
-        'admins' => [
+        'admin' => [
             'driver' => 'session',
-            'provider' => 'admins',
+            'provider' => 'utilisateurs',
         ],
     ],
 
@@ -76,9 +76,13 @@ return [
     */
 
     'providers' => [
+        'utilisateurs' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Utilisateur::class,
+        ],
         'tuteurs' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Tuteur::class,
         ],
         'enseignants' => [
             'driver' => 'eloquent',
@@ -88,9 +92,9 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Eleve::class,
         ], 
-        'admin' => [
+        'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Admin::class,
         ],
         // 'users' => [
         //     'driver' => 'database',

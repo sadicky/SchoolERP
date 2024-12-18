@@ -98,7 +98,7 @@
                 <a href="exam-grade.html" class="nav-link"><i class="fas fa-angle-right"></i>Roles</a>
             </li>
             <li class="nav-item">
-                <a href="exam-grade.html" class="nav-link"><i class="fas fa-angle-right"></i>Utilisateurs</a>
+                <a href="{{route('admins.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Utilisateurs</a>
             </li>
             <li class="nav-item">
                 <a href="{{route('annees.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Année Scolaire</a>

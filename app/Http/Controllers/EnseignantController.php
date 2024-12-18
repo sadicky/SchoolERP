@@ -10,6 +10,7 @@ use App\Models\Enseignant;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class EnseignantController extends Controller
 {
@@ -65,7 +66,7 @@ class EnseignantController extends Controller
 
         $userE = Utilisateur::create([
             'matricule' => $matriculeE,
-            'pwd' => bcrypt('123456'),
+            'password' => Hash::make('123456'),
             'role_id' => Role::where('role_name', 'Enseignant')->firstOrFail()->role_id,
             'status' => '1'
 

@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\Tuteur;
 use App\Models\Utilisateur;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreTuteurRequest;
 use App\Http\Requests\UpdateTuteurRequest;
 
@@ -43,7 +44,7 @@ class TuteurController extends Controller
         
          $userT = Utilisateur::create([
         'matricule'=>$matricule,
-        'pwd'=>bcrypt('123456'),
+        'password'=>Hash::make('123456'),
         'role_id'=>Role::where('role_name','Tuteur')->firstOrFail()->role_id,
         'status' => '1'
 

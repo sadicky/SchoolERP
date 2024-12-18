@@ -11,9 +11,7 @@ class Enseignant extends Model
     use HasFactory, SoftDeletes;
     protected $table="tbl_enseignants";
     protected $primaryKey = 'enseignant_id';
-    
-    protected $guard = "enseignants";
-    
+        
     public $fillable = [
         'nom',
         'prenom',
@@ -32,4 +30,8 @@ class Enseignant extends Model
         'status'
     ];
     public $timestamps = false;
+    public function utilisateur(){
+        return $this->belongsTo(Utilisateur::class,'user_id');
+    }
+
 }

@@ -11,6 +11,7 @@ use App\Models\Section;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class EleveController extends Controller
 {
@@ -64,7 +65,7 @@ class EleveController extends Controller
 
         $userE = Utilisateur::create([
             'matricule' => $matriculeE,
-            'pwd' => bcrypt('123456'),
+            'password' => Hash::make('123456'),
             'role_id' => Role::where('role_name', 'Eleve')->firstOrFail()->role_id,
             'status' => '1'
 
@@ -81,7 +82,7 @@ class EleveController extends Controller
 
             $userT = Utilisateur::create([
                 'matricule' => $matriculeT,
-                'pwd' => bcrypt('123456'),
+                'pwd' => Hash::make('123456'),
                 'role_id' => Role::where('role_name', 'Tuteur')->firstOrFail()->role_id,
                 'status' => '1'
             ]);

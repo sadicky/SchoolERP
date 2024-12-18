@@ -12,14 +12,12 @@ class Tuteur extends Model
     protected $primaryKey = 'tuteur_id';
     public $timestamps = false;
     
-
-    protected $guard = "tuteurs";
     public $fillable = [
         'nom','prenom','postnom','relation','email','contact','sexe','adresse',
         'profession','nationalite','photo','user_id'
     ];
 
-    public function user(){
+    public function utilisateur(){
         return $this->belongsTo(Utilisateur::class,'user_id');
     }
 
