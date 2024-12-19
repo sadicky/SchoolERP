@@ -141,7 +141,6 @@ return [
     | your application but you are free to change this when necessary.
     |
     */
-    'secure' => env('SESSION_SECURE_COOKIE', null),
     'path' => '/',
 
     /*
