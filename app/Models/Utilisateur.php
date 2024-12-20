@@ -33,4 +33,21 @@ class Utilisateur extends Authenticatable
         return $this->hasOne(Enseignant::class,'user_id');
     }
 
+    // Récupérer le rôle en texte
+    public function getRoleTextAttribute()
+    {
+        switch ($this->role_id) {
+            case 1:
+                return 'Admin';
+            case 2:
+                return 'Eleve';
+            case 3:
+                return 'Tuteur';
+            case 4:
+                return 'Enseignant';
+            default:
+                return 'Inconnu';
+        }
+    }
+
 }

@@ -122,5 +122,19 @@ class ClasseController extends Controller
         }
         return response()->json($options);
     }
+
+    public function get_cours($classe_id)
+    {
+        //
+        $cours = DB::table('tbl_cours as c')
+        ->join('tbl_cours_classes as cc', 'cc.cours_id','=','c.cours_id')
+        ->join('tbl_classes as cl', 'cl.classe_id','=','cc.classe_id')
+        ->where('cl.classe_id', '=',$classe_id)
+        ->get();
+        if($cours->isEmpty()){
+            return response()->json(['message'=>'Aucun cours disponible pour cette classe'],404);
+        }
+        return response()->json($cours);
+    }
 }
 
