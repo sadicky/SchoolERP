@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\AnneeScolaire;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UpdateFicheRequest;
+use PhpParser\Node\Stmt\Foreach_;
 
 class FicheController extends Controller
 {
@@ -30,19 +31,101 @@ class FicheController extends Controller
         //   return view('admin.eleves.bulletins.primaire',compact('annees', 'title', 'sections'));
     }
 
-    public function bulletin(){
-            // $VAR= view('admin.eleves.bulletins.secondaire');
-            
-            // if ($_SESSION["cat"]=="pri") 
-            //     $VAR=view('admin.eleves.bulletins.primaire');
-            
-            // if ($_SESSION["cat"]=="mat") 
-            //     $VAR=view('admin.eleves.bulletins.maternelle');
+    public function bulletin($id){
+          
+        $eleve = DB::table('tbl_eleves as e')
+        ->join('tbl_classes as cl', 'cl.classe_id','=','e.classe_id')
+        ->join('tbl_options as o', 'o.option_id','=','cl.option_id')
+        ->join('tbl_section as s', 's.section_id','=','o.section_id')
+        ->join('tbl_users as u', 'u.user_id','=','e.user_id')
+        ->where('e.eleve_id', '=',$id)
+        ->where('e.statut', '=','1')
+        ->first();
 
-            // return view('admin.eleves.bulletins.secondaire');
+        $cours=DB::table('tbl_cours as c') 
+        ->join('tbl_cours_classes as cc', 'cc.cours_id','=','c.cours_id')
+        ->join('tbl_classes as cl', 'cl.classe_id','=','cc.classe_id')
+        ->where('cl.classe_id', '=',$eleve->classe_id)
+        ->where('c.status', '=','1')
+        ->get();
+       
+        $annee = AnneeScolaire::where('statut','1')          
+        ->orderBy('annee_id', 'desc')
+        ->limit(1)
+        ->first();
+
+        
+        // $notes=DB::table('tbl_notes as n')
+        // ->join('tbl_cours as c', 'c.cours_id','=','n.cours_id')
+        // ->join('tbl_eleves as e', 'e.eleve_id','=','n.eleve_id')
+        // ->join('tbl_periodes as p', 'p.periode_id','=','n.periode_id')
+        // ->join('tbl_annee as a', 'a.annee_id','=','n.annee_id')
+        // ->where('a.annee_id', '=',$annee->annee_id)
+        // ->where('e.eleve_id', '=',$eleve->eleve_id)
+        // ->first();
+        
+        $notes_periode1=DB::table('tbl_notes as n')
+        ->join('tbl_cours as c', 'c.cours_id','=','n.cours_id')
+        ->join('tbl_eleves as e', 'e.eleve_id','=','n.eleve_id')
+        ->join('tbl_periodes as p', 'p.periode_id','=','n.periode_id')
+        ->join('tbl_annee as a', 'a.annee_id','=','n.annee_id')
+        ->where('a.annee_id', '=',$annee->annee_id)
+        ->where('e.eleve_id', '=',$eleve->eleve_id)
+        ->where('c.cours_id', '=',8)
+        ->where('p.periode_name', '=',"1ère Période")
+        ->select('n.note')
+        ->first();
+
+        $i=0;$rang1=0;$x=100;
+        $classement=DB::table('tbl_notes as n')
+        ->join('tbl_cours as c', 'c.cours_id','=','n.cours_id')
+        ->join('tbl_eleves as e', 'e.eleve_id','=','n.eleve_id')
+        ->join('tbl_periodes as p', 'p.periode_id','=','n.periode_id')
+        ->join('tbl_annee as a', 'a.annee_id','=','n.annee_id')
+        ->where('a.annee_id', '=',$annee->annee_id)
+        ->where('e.eleve_id', '=',$eleve->eleve_id)
+        ->where('p.periode_name', '=',"1ère Période")
+        ->get();
+        
+        foreach($classement as $c) {
+          $i++;
+          $tab[]=$c;
+          if ($c->eleve_id==$eleve->eleve_id){
+            $rang1=$i;
+          }
+         }
+         $rang1 =  $rang1;
+
+        return view('admin.eleves.bulletins.secondaires',compact('eleve','annee','cours','notes_periode1','rang1'));
             
      }
 
+     public function bulletinM(){
+        // $VAR= view('admin.eleves.bulletins.secondaire');
+        
+        // if ($_SESSION["cat"]=="pri") 
+        //     $VAR=view('admin.eleves.bulletins.primaire');
+        
+        // if ($_SESSION["cat"]=="mat") 
+        //     $VAR=view('admin.eleves.bulletins.maternelle');
+
+        // return view('admin.eleves.bulletins.secondaire');
+    return "Maternelle";	
+        
+ }
+ public function bulletinP(){
+    // $VAR= view('admin.eleves.bulletins.secondaire');
+    
+    // if ($_SESSION["cat"]=="pri") 
+    //     $VAR=view('admin.eleves.bulletins.primaire');
+    
+    // if ($_SESSION["cat"]=="mat") 
+    //     $VAR=view('admin.eleves.bulletins.maternelle');
+
+    // return view('admin.eleves.bulletins.secondaire');
+    return "Primaire";
+    
+}
     public function search(Request $request)
     {
         $request->validate([

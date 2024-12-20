@@ -69,7 +69,13 @@
                             <td>{{$eleve->option_name}}</td>
                             <td>{{$eleve->classe_name}}</td>
                             <td>
-                                <a href="{{route('eleves.bulletin', $eleve->eleve_id)}}" class="fas fa-file"></a>                                
+                                @if($eleve->category_option_id == 1)
+                                <a href="{{route('bulletinm', $eleve->eleve_id)}}" class="fas fa-file"></a>
+                                @elseif($eleve->category_option_id == 2)
+                                <a href="{{route('bulletinp', $eleve->eleve_id)}}" class="fas fa-file"></a>
+                                @else 
+                                <a href="{{route('bulletin', $eleve->eleve_id)}}" class="fas fa-file"></a>
+                                @endif                               
                             </td>
                             <td>
                                 @if ($eleve->deleted_at != '')
