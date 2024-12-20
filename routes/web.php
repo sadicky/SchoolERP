@@ -2,11 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CoursController;
 use App\Http\Controllers\EleveController;
+use App\Http\Controllers\FicheController;
 use App\Http\Controllers\FraisController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\CahierController;
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\TuteurController;
@@ -15,6 +18,8 @@ use App\Http\Controllers\SectionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CatFraisController;
 use App\Http\Controllers\CatPrimeController;
+use App\Http\Controllers\PresenceEController;
+use App\Http\Controllers\PresencePController;
 use App\Http\Controllers\EnseignantController;
 use App\Http\Controllers\AnneeScolaireController;
 
@@ -47,7 +52,7 @@ Route::resource('periodes', PeriodeController::class);
 //SECTIONS
 Route::resource('sections', SectionController::class);
 Route::get('/sections/get-inscription/{section_id}', [SectionController::class,'get_inscription'])->name('get_inscription');
-
+Route::get('/sections/get-periode/{section_id}', [SectionController::class,'get_periode'])->name('get_periode');;
 
 //OPTIONS
 Route::resource('options', OptionController::class);
@@ -69,6 +74,7 @@ Route::resource('categories_primes', CatPrimeController::class);
 
 //CLASSES
 Route::resource('classes', ClasseController::class);
+Route::get('/classes/get-cours/{classe_id}', [ClasseController::class,'get_cours'])->name('get_cours');
 Route::get('/classes/get-options/{section_id}', [ClasseController::class,'get_options'])->name('get_option');
 
 
@@ -77,14 +83,19 @@ Route::resource('cours', CoursController::class);
 Route::get('/cours/get-classes/{classe_id}', [CoursController::class,'get_classes']);
 Route::get('/cours/{id}/affecter', [CoursController::class,'affect_classes'])->name('get_classes');
 Route::patch('/cours/{id}/affecter_classe', [CoursController::class,'affect_cours_classe'])->name('cours.affecter');
+// Route::get('/classes/get-classe/{section_id}', [ClasseController::class,'get_options'])->name('get_option');
+
 
 
 //Eleves
-
 Route::get('/eleves/{id}/restore', [EleveController::class, 'restore'])->name('eleves.restore');
 Route::get('/eleves/check-tutor', [EleveController::class, 'checkTutor']);
 Route::delete('/eleves/{id}/force-delete', [EleveController::class, 'forceDelete'])->name('eleves.force_delete'); 
 Route::resource('eleves', EleveController::class);
+Route::post('/eleves/search', [FicheController::class, 'search'])->name('eleves.search');
+Route::get('/eleves/{id}/bulletin', [FicheController::class, 'bulletinM'])->name('eleves.bulletinM');
+Route::get('/eleves/{id}/bulletin', [FicheController::class, 'bulletinP'])->name('eleves.bulletinP');
+Route::get('/eleves/{id}/bulletin', [FicheController::class, 'bulletin'])->name('eleves.bulletin');
 
 //Enseignants
 Route::get('/enseignants/{id}/restore', [EnseignantController::class, 'restore'])->name('enseignants.restore');
@@ -96,6 +107,26 @@ Route::resource('parents', TuteurController::class);
 
 //Admin
 Route::resource('admins', AdminController::class); 
+
+//Fiche de Cotation
+Route::resource('fiches', FicheController::class);
+Route::post('/fiches/{cours_id}', [FicheController::class, 'store']);
+// Route::get('fiches', [FicheController::class, 'index']);
+
+//Fiche de Cotation
+Route::resource('cahiers', CahierController::class);
+
+//Note & Bulletin
+Route::resource('notes', NoteController::class);
+
+
+//Presence Eleve
+Route::resource('presencee', PresenceEController::class);
+Route::post('/presencee/search', [PresenceEController::class, 'search'])->name('presencee.search');
+Route::post('/presencee/filter', [PresenceEController::class, 'filter'])->name('presencee.filter');
+
+//Presence Personnel
+Route::resource('presencep', PresencePController::class);
 
 
 // Route::prefix('admin')->middleware(['auth:admin', 'role:admin'])->group(function () {

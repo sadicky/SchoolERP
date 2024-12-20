@@ -19,7 +19,7 @@
             <div class="card ui-tab-card">
                 <div class="card-body">
                     <div class="border-nav-tab">
-                        <ul class="nav nav-tabs" role="tablist">
+                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#info" role="tab"
                                     aria-selected="true">Classes</a>

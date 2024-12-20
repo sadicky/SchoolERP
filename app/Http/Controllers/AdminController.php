@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\Admin;
 use App\Models\Utilisateur;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
@@ -18,6 +19,11 @@ class AdminController extends Controller
     {
         //
         $title = "Gestions des Admins";
+        $utilisateur = Auth::user();
+        // $admin = $utilisateur->admin;
+        // $eleve = $utilisateur->eleve;
+        // $tuteur = $utilisateur->tuteur;
+        // $enseignant = $utilisateur->enseignant;
         $users = Admin::all(); 
         $roles = Role::all();
         return view('admin.users.all',compact('users', 'title','roles')); 

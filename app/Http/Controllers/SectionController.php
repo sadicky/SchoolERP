@@ -112,7 +112,7 @@ class SectionController extends Controller
     public function get_inscription($section_id)
     {
         //
-               $options = DB::table('tbl_category_frais as cf','montant')
+         $options = DB::table('tbl_category_frais as cf','montant')
          ->join('tbl_category_frais_option as cfo', 'cfo.category_frais_id','=','cf.category_frais_id')
          ->join('tbl_section as s', 's.section_id','=','cfo.category_option_id')
          ->where('cf.category_frais_id','=',3)
@@ -122,8 +122,17 @@ class SectionController extends Controller
             return response()->json(['message'=>'Aucun Frais Dispo'],404);
         }
         return response()->json($options);
-            
-        // return response()->json( [
-        //     'montant'=>$options->montant]);
+    }
+    public function get_periode($section_id)
+    {
+        //
+         $periodes = DB::table('tbl_periodes as p')
+         ->join('tbl_category_options as c', 'c.category_option_id','=','p.category_option_id')
+         ->where('p.category_option_id', '=',$section_id)
+         ->get();
+        if($periodes->isEmpty()){
+            return response()->json(['message'=>'Aucune Periode Dispo'],404);
+        }
+        return response()->json($periodes);
     }
 }

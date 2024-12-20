@@ -14,6 +14,7 @@ class Eleve extends Model
     protected $table="tbl_eleves";
     protected $primaryKey = 'eleve_id';
     
+    
     public $fillable = [
         'nom',
         'prenom',
@@ -40,5 +41,9 @@ class Eleve extends Model
         return $this->belongsTo(Tuteur::class,'tuteur_id');
     }
 
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
    
 }

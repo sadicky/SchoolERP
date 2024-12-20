@@ -49,6 +49,7 @@
                     <th>Section</th>
                     <th>Option</th>
                     <th>classe</th>
+                    <th>Bulletin</th>
                     <th>Actions</th>
                     </tr>
                 </thead>
@@ -67,6 +68,9 @@
                             <td>{{$eleve->section_name}}</td>
                             <td>{{$eleve->option_name}}</td>
                             <td>{{$eleve->classe_name}}</td>
+                            <td>
+                                <a href="{{route('eleves.bulletin', $eleve->eleve_id)}}" class="fas fa-file"></a>                                
+                            </td>
                             <td>
                                 @if ($eleve->deleted_at != '')
                                 <a href="{{route('eleves.restore',$eleve->eleve_id)}}"

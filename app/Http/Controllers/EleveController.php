@@ -25,7 +25,7 @@ class EleveController extends Controller
         $classes = Classe::all(); 
         $eleves = DB::table('tbl_eleves as e')
         ->join('tbl_classes as cl', 'cl.classe_id','=','e.classe_id')
-        ->join('tbl_options as o', 'o.option_id','=','cl.option_id')
+        ->join('tbl_options as o', 'o.option_id','=','cl.option_id') 
         ->join('tbl_section as s', 's.section_id','=','o.section_id')
         ->get();
         return view('admin.eleves.eleves', compact('eleves', 'classes', 'title'));
@@ -82,7 +82,7 @@ class EleveController extends Controller
 
             $userT = Utilisateur::create([
                 'matricule' => $matriculeT,
-                'pwd' => Hash::make('123456'),
+                'password' => Hash::make('123456'),
                 'role_id' => Role::where('role_name', 'Tuteur')->firstOrFail()->role_id,
                 'status' => '1'
             ]);
@@ -116,10 +116,12 @@ class EleveController extends Controller
             $eleve->classe_id = $request->classe_id;
             $eleve->tuteur_id = $tut->tuteur_id;
             $eleve->user_id = $userE->user_id;
-            if($request->payer==1)
-            $eleve->statut = '1' ;
-            else
-            $eleve->statut = '0' ;
+            if($request->payer==1){
+                $eleve->statut = '1' ;
+            }
+            else{
+                $eleve->statut = '0' ;
+            }
             $eleve->save();
         }else{
             $eleve = new Eleve();
@@ -137,10 +139,12 @@ class EleveController extends Controller
             $eleve->classe_id = $request->classe_id;
             $eleve->tuteur_id = $tuteur_id;
             $eleve->user_id = $userE->user_id;
-            if($request->payer==1)
-            $eleve->statut = '1' ;
-            else
-            $eleve->statut = '0' ;
+            if($request->payer==1){
+                $eleve->statut = '1' ;
+            }
+            else{
+                $eleve->statut = '0' ;
+            }
             $eleve->save();
         }       
 
@@ -284,4 +288,6 @@ class EleveController extends Controller
             return response()->json(['exists' => false]);
         }
     }
+
+ 
 }
