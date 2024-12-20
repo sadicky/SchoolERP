@@ -10,7 +10,7 @@
             <li>
                 <a href="/">Dashboard</a>
             </li>
-            <li>Adminn</li>
+            <li>Admin</li>
         </ul>
     </div>
     <!-- Breadcubs Area End Here -->

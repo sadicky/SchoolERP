@@ -18,14 +18,14 @@
         <a href="{{route('cours.index')}}" class="nav-link"><i class="flaticon-open-book"></i><span>Cours</span></a>
     </li>
     <li class="nav-item">
-        <a href="class-routine.html" class="nav-link"><i class="flaticon-calendar"></i><span>Horaires
+        <a href="{{route('horaires.index')}}" class="nav-link"><i class="flaticon-calendar"></i><span>Horaires
             </span></a>
     </li>
     <li class="nav-item">
         <a href="#" class="nav-link"><i class="flaticon-shopping-list"></i><span>Disciplines</span></a>
     </li>
     <li class="nav-item">
-        <a href="hostel.html" class="nav-link"><i class="flaticon-bed"></i><span>Communiqués</span></a>
+        <a href="{{route('communiques.index')}}" class="nav-link"><i class="flaticon-bed"></i><span>Communiqués</span></a>
     </li>
     <li class="nav-item sidebar-nav-item">
         <a href="#" class="nav-link"><i class="flaticon-shopping-list"></i><span>Notes</span></a>
@@ -44,6 +44,9 @@
         <ul class="nav sub-group-menu">
             <li class="nav-item">
                 <a href="{{route('frais.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Frais Scolaire</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('primes.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Primes</a>
             </li>
             <li class="nav-item">
                 <a href="all-expense.html" class="nav-link"><i class="fas fa-angle-right"></i>Salaires</a>

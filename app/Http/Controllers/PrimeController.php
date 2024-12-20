@@ -14,6 +14,9 @@ class PrimeController extends Controller
     public function index()
     {
         //
+        $title = "Gestion du prime";
+
+        return view('admin.primes.all', compact('title'));
     }
 
     /**
@@ -22,6 +25,9 @@ class PrimeController extends Controller
     public function create()
     {
         //
+        $title = "Ajout d'une prime";
+
+        return view('admin.primes.create', compact('title'));
     }
 
     /**

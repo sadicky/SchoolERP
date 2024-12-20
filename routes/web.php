@@ -22,6 +22,9 @@ use App\Http\Controllers\PresenceEController;
 use App\Http\Controllers\PresencePController;
 use App\Http\Controllers\EnseignantController;
 use App\Http\Controllers\AnneeScolaireController;
+use App\Http\Controllers\CommuniqueController;
+use App\Http\Controllers\HoraireController;
+use App\Http\Controllers\PrimeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -127,6 +130,24 @@ Route::post('/presencee/filter', [PresenceEController::class, 'filter'])->name('
 
 //Presence Personnel
 Route::resource('presencep', PresencePController::class);
+
+
+//Communiques
+Route::get('/communiques/{id}/restore', [CommuniqueController::class, 'restore'])->name('communiques.restore');
+Route::delete('/communiques/{id}/force-delete', [CommuniqueController::class, 'forceDelete'])->name('communiques.force_delete');
+
+Route::resource('communiques', CommuniqueController::class);
+
+//Horaires
+Route::get('/horaires/{id}/restore', [HoraireController::class, 'restore'])->name('horaires.restore');
+Route::delete('/horaires/{id}/force-delete', [HoraireController::class, 'forceDelete'])->name('horaires.force_delete');
+
+Route::resource('horaires', HoraireController::class);
+
+//Primes
+Route::resource('primes', PrimeController::class);
+
+
 
 
 // Route::prefix('admin')->middleware(['auth:admin', 'role:admin'])->group(function () {
