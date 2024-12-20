@@ -12,8 +12,9 @@
         <div class="navbar navbar-expand-md header-menu-one bg-light">
             <div class="nav-bar-header-one">
                 <div class="header-logo">
-                    <a href="index.html">
-                        <img src="{{asset('assets/img/logo.png')}}" alt="logo">
+                    <a href="#" style="color: white">
+                        {{-- <img src="{{asset('assets/img/logo.png')}}" alt="logo"> --}}
+                        <b>COMPLEXE-S LOMITA</b>
                     </a>
                 </div>
                  <div class="toggle-button sidebar-toggle">

@@ -145,6 +145,8 @@ Route::delete('/horaires/{id}/force-delete', [HoraireController::class, 'forceDe
 Route::resource('horaires', HoraireController::class);
 
 //Primes
+Route::get('/primes/{id}/restore', [PrimeController::class, 'restore'])->name('primes.restore');
+Route::delete('/primes/{id}/force-delete', [PrimeController::class, 'forceDelete'])->name('primes.force_delete');
 Route::resource('primes', PrimeController::class);
 
 

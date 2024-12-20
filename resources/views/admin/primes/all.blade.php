@@ -12,7 +12,7 @@
             </li>
             <li>{{$title}}</li>
         </ul> 
-    </div>
+    </div> 
 
     <!-- Row -->
     <div class="modal-box pull-right">
@@ -35,13 +35,44 @@
                     <th>#</th>
                     <th>Catégorie prime</th>
                     <th>Montant</th>
-                    <th>Date</th>
                     <th>Matricule</th>
+                    <th>Date</th>
                     <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-
+                    @foreach ($primes as $prime)
+                        <tr>
+                            <td>#</td>
+                            <td>{{$prime->category_prime}}</td>
+                            <td>{{$prime->montant}}$</td>
+                            <td>CSL{{$prime->matricule}}</td>
+                            <td>{{$prime->date_prime}}</td>
+                            <td>
+                                @if ($prime->deleted_at == '')
+                                <form action="{{route('primes.destroy', $prime->prime_id)}}" method="POST"
+                                    style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-xs btn-danger fa fa-trash"
+                                        onclick="return confirm('Êtes-vous sûr de vouloir faire cette action ?')">
+                                        Supprimer
+                                    </button>
+                                </form>
+                                @else
+                                <a href="{{route('primes.restore',$prime->prime_id)}}"
+                                    class=" btn btn-xs btn-warning fas fa-edit" title="Restaurer">
+                                    Restaurer 
+                                </a>
+                                @endif
+                                
+                                <a href="{{route('primes.edit',$prime->prime_id)}}"
+                                    class=" btn btn-xs btn-success fas fa-edit" title="Modifier">
+                                    Modifier
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table> 
         </div>

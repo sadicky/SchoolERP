@@ -16,7 +16,7 @@
 
     <!-- Row -->
     <div class="modal-box pull-right">
-        <a href="{{route('communiques.index')}}" class="btn btn-lg btn-success" style="font-size: 20px">Tous les communiqués</a>
+        <a href="{{route('primes.index')}}" class="btn btn-lg btn-success" style="font-size: 20px">Toutes les primes</a>
         <hr>
     </div>
     <!-- Teacher Payment Area Start Here --> 
@@ -24,7 +24,7 @@
         <div class="card-body">
             <div class="heading-layout1">
                 <div class="item-title">
-                    <h3>Communiqués</h3>
+                    <h3>Prime</h3>
                 </div>
 
             </div>
@@ -32,37 +32,34 @@
             <form method="post" action="{{route('primes.store')}}" enctype="multipart/form-data" class="form">
                 {{ csrf_field() }}
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-12 form-group">
-                        <label>Description</label>
-                        <textarea name="description" id="" cols="30" rows="10" class="form-control">
-                            
-                        </textarea>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-12 form-group">
-                        <label>Date de communique</label>
-                        <input type="date" name="date_communique"  class="form-control">
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-12 form-group">
-                        <label>Concerné</label>
-                        <select name="concerned" id="" class="form-control">
+                    <div class="col-xl-6 col-lg-6 col-12 form-group">
+                        <label>Catégorie</label>
+                        <select name="category_prime_id" id="" class="form-control">
                             </option>
-                            <option value="all">Tous</option>
-                            <option value="eleves">Eleves</option>
-                            <option value="tuteur">Tuteurs</option>
-                            <option value="enseignant">Enseignants</option>
+                            <option value="all">Selectionner</option>
+                            @foreach ($categories_primes as $category_prime)
+                                <option value="{{$category_prime->category_prime_id}}">
+                                    {{$category_prime->category_prime}}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
+                    <div class="col-xl-6 col-lg-6 col-12 form-group">
+                        <label>Montant</label>
+                      <input type="text" class="form-control" name="montant">
+                    </div>
+                    
+                    
                 </div>
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-12 form-group">
-                        <label>Nom</label>
-                        <select name="annee_id" id="" class="form-control">
-                            <option value="">Value</option>
-                        </select>
+                        <label>Matricule</label>
+                        <input type="number" name="matricule"  class="form-control">
                     </div>
+
                     <div class="col-xl-6 col-lg-6 col-12 form-group">
-                        <label for="">Statu communique</label>
-                        <input type="text" name="statut_communique" class="form-control">
+                        <label>Date</label>
+                        <input type="date" name="date_prime" class="form-control">
                     </div>
 
                 <div/>
