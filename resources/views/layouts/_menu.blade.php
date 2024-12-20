@@ -63,11 +63,11 @@
         <a href="#" class="nav-link"><i class="flaticon-checklist"></i><span>Présences</span></a>
         <ul class="nav sub-group-menu">
             <li class="nav-item">
-                <a href="exam-schedule.html" class="nav-link"><i class="fas fa-angle-right"></i>
+                <a href="{{route('presencee.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>
                     Elèves</a>
             </li>
             <li class="nav-item">
-                <a href="exam-grade.html" class="nav-link"><i class="fas fa-angle-right"></i>
+                <a href="{{route('presencep.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>
                     Personnels</a>
             </li>
         </ul>

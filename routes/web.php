@@ -18,6 +18,8 @@ use App\Http\Controllers\SectionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CatFraisController;
 use App\Http\Controllers\CatPrimeController;
+use App\Http\Controllers\PresenceEController;
+use App\Http\Controllers\PresencePController;
 use App\Http\Controllers\EnseignantController;
 use App\Http\Controllers\AnneeScolaireController;
 
@@ -114,6 +116,15 @@ Route::resource('cahiers', CahierController::class);
 
 //Note & Bulletin
 Route::resource('notes', NoteController::class);
+
+
+//Presence Eleve
+Route::resource('presencee', PresenceEController::class);
+Route::post('/presencee/search', [PresenceEController::class, 'search'])->name('presencee.search');
+Route::post('/presencee/filter', [PresenceEController::class, 'filter'])->name('presencee.filter');
+
+//Presence Personnel
+Route::resource('presencep', PresencePController::class);
 
 
 // Route::prefix('admin')->middleware(['auth:admin', 'role:admin'])->group(function () {
