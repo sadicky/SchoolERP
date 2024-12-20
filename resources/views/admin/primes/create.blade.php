@@ -29,32 +29,22 @@
 
             </div>
             <hr>
-            <form method="post" action="{{route('primes.update',$communique->communique_id)}}" enctype="multipart/form-data" class="form">
+            <form method="post" action="{{route('primes.store')}}" enctype="multipart/form-data" class="form">
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Description</label>
                         <textarea name="description" id="" cols="30" rows="10" class="form-control">
-                            {{$communique->description}}
+                            
                         </textarea>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Date de communique</label>
-                        <input type="date" name="date_communique" value="{{$communique->date_communique}}" class="form-control">
+                        <input type="date" name="date_communique"  class="form-control">
                     </div>
                     <div class="col-xl-4 col-lg-4 col-12 form-group">
                         <label>Concerné</label>
                         <select name="concerned" id="" class="form-control">
-                            <option selected value="{{$communique->concerned}}">
-                                @if ($communique->concerned == 'eleves')
-                                    <b>Elève</b>
-                                @elseif ($communique->concerned == 'all')
-                                    <b>Tous</b>
-                                @elseif ($communique->concerned == 'enseignant')  
-                                     <b>Enseignants</b>
-                                @else
-                                     <b>Parents</b>     
-                                @endif
                             </option>
                             <option value="all">Tous</option>
                             <option value="eleves">Eleves</option>
@@ -67,12 +57,7 @@
                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                         <label>Nom</label>
                         <select name="annee_id" id="" class="form-control">
-                            <option selected value="{{$communique->annee_id}}">{{$communique->annee}}</option>
-                            @foreach ($annees as $annee)
-                            <option value="{{$annee->annee_id}}">
-                                {{$annee->annee}}
-                            </option>
-                            @endforeach
+                            <option value="">Value</option>
                         </select>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-12 form-group">
