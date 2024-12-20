@@ -93,6 +93,8 @@ Route::get('/eleves/check-tutor', [EleveController::class, 'checkTutor']);
 Route::delete('/eleves/{id}/force-delete', [EleveController::class, 'forceDelete'])->name('eleves.force_delete'); 
 Route::resource('eleves', EleveController::class);
 Route::post('/eleves/search', [FicheController::class, 'search'])->name('eleves.search');
+Route::get('/eleves/{id}/bulletin', [FicheController::class, 'bulletinM'])->name('eleves.bulletinM');
+Route::get('/eleves/{id}/bulletin', [FicheController::class, 'bulletinP'])->name('eleves.bulletinP');
 Route::get('/eleves/{id}/bulletin', [FicheController::class, 'bulletin'])->name('eleves.bulletin');
 
 //Enseignants
