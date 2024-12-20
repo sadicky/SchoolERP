@@ -29,6 +29,10 @@
                                     aria-selected="false">Cours</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#horaires" role="tab"
+                                    aria-selected="false">Horaire</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#camarades" role="tab"
                                     aria-selected="false">Camarades</a>
                             </li>
@@ -104,6 +108,10 @@
                             
                             <div class="tab-pane fade show" id="presences" role="tabpanel">
                                 <p>presences</p>
+                            </div>
+                            
+                            <div class="tab-pane fade show" id="horaires" role="tabpanel">
+                                <p>Horaires</p>
                             </div>
 
                             <div class="tab-pane fade show" id="paiements" role="tabpanel">
