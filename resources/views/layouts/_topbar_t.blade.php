@@ -12,7 +12,7 @@
             <a class="navbar-nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                 aria-expanded="false">
                 <div class="admin-title">
-                    <h5 class="item-title">{{Auth::user()->admin->nom}}</h5>
+                    <h5 class="item-title">{{Auth::user()->tuteur->nom}}</h5>
                     <span>{{Auth::user()->role->role_name }}</span>
                     
                 </div>
@@ -23,7 +23,9 @@
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="item-header">
                     <h6 class="item-title">                       
-                    {{Auth::user()->admin->nom}} {{Auth::user()->admin->prenom}} {{Auth::user()->admin->postnom}}
+                    {{Auth::user()->tuteur->nom}}                
+                    {{Auth::user()->tuteur->prenom}}                
+                    {{Auth::user()->tuteur->postnom}}
                     </h6>
                 </div>
                 <div class="item-content">
@@ -45,7 +47,7 @@
                 aria-expanded="false">
                 <i class="far fa-envelope"></i>
                 <div class="item-title d-md-none text-16 mg-l-10">Message</div>
-                <span>5</span>
+                <span>1</span>
             </a>
 
             <div class="dropdown-menu dropdown-menu-right">

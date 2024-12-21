@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\Tuteur;
 use App\Models\Utilisateur;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreTuteurRequest;
 use App\Http\Requests\UpdateTuteurRequest;
@@ -31,6 +32,29 @@ class TuteurController extends Controller
     {
         //
     }
+    public function dashboard()
+    {
+        //
+        $title = "Dashboard"; 
+        $id = Auth::user()->tuteur->tuteur_id;
+        
+        $eleves = DB::table('tbl_eleves as e')
+        ->join('tbl_classes as cl', 'cl.classe_id','=','e.classe_id')
+        ->join('tbl_options as o', 'o.option_id','=','cl.option_id')
+        ->join('tbl_section as s', 's.section_id','=','o.section_id')
+        ->where('e.tuteur_id', '=',$id)
+        ->get();
+
+        $tuteur = DB::table('tbl_eleves as e')
+        ->join('tbl_classes as cl', 'cl.classe_id','=','e.classe_id')
+        ->join('tbl_options as o', 'o.option_id','=','cl.option_id')
+        ->join('tbl_section as s', 's.section_id','=','o.section_id')
+        ->join('tbl_tuteurs as t', 't.tuteur_id','=','e.tuteur_id')
+        ->where('t.tuteur_id', '=',$id)
+        ->first();
+        
+        return view('parent.dashboard',compact('title', 'eleves','tuteur'));
+    } 
 
     /**
      * Store a newly created resource in storage.

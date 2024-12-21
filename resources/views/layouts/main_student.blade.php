@@ -12,9 +12,8 @@
         <div class="navbar navbar-expand-md header-menu-one bg-light">
             <div class="nav-bar-header-one">
                 <div class="header-logo">
-                    <a href="#" style="color: white">
-                        {{-- <img src="{{asset('assets/img/logo.png')}}" alt="logo"> --}}
-                        <b>COMPLEXE-S LOMITA</b>
+                    <a href="index.html">
+                        <img src="{{asset('assets/img/logo.png')}}" alt="logo">
                     </a>
                 </div>
                  <div class="toggle-button sidebar-toggle">
@@ -35,7 +34,7 @@
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
-            @include('layouts._topbar')
+            @include('layouts._topbar_st')
         </div>
         <!-- Header Menu Area End Here -->
         <!-- Page Area Start Here -->
@@ -48,7 +47,7 @@
                     </div>
                </div>
                 <div class="sidebar-menu-content">
-                   @include('layouts._menu')
+                   @include('layouts._menu_st')
                 </div>
             </div>
             <!-- Sidebar Area End Here -->

@@ -11,6 +11,7 @@ use App\Models\Section;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class EleveController extends Controller
@@ -29,6 +30,49 @@ class EleveController extends Controller
         ->join('tbl_section as s', 's.section_id','=','o.section_id')
         ->get();
         return view('admin.eleves.eleves', compact('eleves', 'classes', 'title'));
+    }
+
+    public function dashboard_eleve()
+    {
+        //
+        $title = "Dashboard"; 
+        $id = Auth::user()->eleve->eleve_id;
+        $classe_id = Auth::user()->eleve->classe_id;
+        $eleve = DB::table('tbl_eleves as e')
+        ->join('tbl_classes as cl', 'cl.classe_id','=','e.classe_id')
+        ->join('tbl_options as o', 'o.option_id','=','cl.option_id')
+        ->join('tbl_section as s', 's.section_id','=','o.section_id')
+        ->where('e.eleve_id', '=',$id)
+        ->first();
+
+        $tuteur = DB::table('tbl_eleves as e')
+        ->join('tbl_classes as cl', 'cl.classe_id','=','e.classe_id')
+        ->join('tbl_options as o', 'o.option_id','=','cl.option_id')
+        ->join('tbl_section as s', 's.section_id','=','o.section_id')
+        ->join('tbl_tuteurs as t', 't.tuteur_id','=','e.tuteur_id')
+        ->where('e.eleve_id', '=',$id)
+        ->first();
+        
+        $camarades = DB::table('tbl_eleves as e')
+        ->join('tbl_classes as cl', 'cl.classe_id','=','e.classe_id')
+        ->join('tbl_options as o', 'o.option_id','=','cl.option_id')
+        ->join('tbl_section as s', 's.section_id','=','o.section_id')
+        ->where('cl.classe_id', '=',$classe_id)
+        ->get();
+        return view('student.dashboard',compact('title', 'eleve','tuteur','camarades'));
+    } 
+
+    public function eleves_from_teacher()
+    {
+        // 
+        $title = "Gestion des Elèves";
+        $classes = Classe::all(); 
+        $eleves = DB::table('tbl_eleves as e')
+        ->join('tbl_classes as cl', 'cl.classe_id','=','e.classe_id')
+        ->join('tbl_options as o', 'o.option_id','=','cl.option_id') 
+        ->join('tbl_section as s', 's.section_id','=','o.section_id')
+        ->get();
+        return view('teacher.eleves',compact('title', 'eleves'));
     }
 
     /**

@@ -39,7 +39,7 @@
                 <div class="item-logo">
                     {{-- <img src="{{asset('asset/img/logo2.png')}}" alt="logo">
                      --}}
-                     <h2>Connexion</h2>
+                     <h2>Connexion - Enseignant</h2>
                      @if (session('error'))
                          <div style="color: red;">{{ session('error') }}</div>
                      @endif

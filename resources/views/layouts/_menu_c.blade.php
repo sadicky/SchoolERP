@@ -1,6 +1,6 @@
 <ul class="nav nav-sidebar-menu sidebar-toggle-view">
     <li class="nav-item">
-        <a href="{{route('dashboard')}}" class="nav-link"><i class="flaticon-dashboard"></i><span>Dashboard</span></a>
+        <a href="/" class="nav-link"><i class="flaticon-dashboard"></i><span>Dashboard</span></a>
     </li>
     <li class="nav-item ">
         <a href="{{route('eleves.index')}}" class="nav-link"><i class="flaticon-classmates"></i><span>Elèves</span></a>
@@ -21,9 +21,9 @@
         <a href="{{route('horaires.index')}}" class="nav-link"><i class="flaticon-calendar"></i><span>Horaires
             </span></a>
     </li>
-    {{-- <li class="nav-item">
+    <li class="nav-item">
         <a href="#" class="nav-link"><i class="flaticon-shopping-list"></i><span>Disciplines</span></a>
-    </li> --}}
+    </li>
     <li class="nav-item">
         <a href="{{route('communiques.index')}}" class="nav-link"><i class="flaticon-bed"></i><span>Communiqués</span></a>
     </li>

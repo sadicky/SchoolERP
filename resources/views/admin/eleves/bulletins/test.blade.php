@@ -2,7 +2,7 @@
 
 @section('title', 'Bulletin | ' . config('app.name'))
 @section('content')
-{{-- {{dd($notes_periode1)}} --}}
+{{-- {{dd($notes_par_cours_et_periode)}} --}}
 <div class="dashboard-content-one">
     <div class="card height-auto">
         <div class="card-body">
@@ -130,10 +130,14 @@
 
                 </tr>
                 <tr>
-                    <td>1èP</td>
+                    
+                    {{-- <td>1èP</td>
                     <td>2èP</td>
                     <td>3èP</td>
-                    <td>4èP</td>
+                    <td>4èP</td> --}}
+                    @foreach ($periodes as $periode)
+                    <td>{{ $periode }}</td>
+                @endforeach
                     <td>%</td>
                     <td>sign.prof</td>
                 </tr>
@@ -144,8 +148,8 @@
             $maxg=0;$pour=0;
             $total=0;$total2=0;$total3=0;$total4=0;$totale1=0;$totale2=0;
              
-              foreach ($notes_periode1 as $value) {
-                $pond=$value->ponderation;
+              foreach ($notes_par_cours_et_periode as $ligne) {
+                $pond=$ligne['ponderation'];
                 $maxg +=$pond;
                 if ($var==0) {?>
                 <tr><b>
@@ -183,39 +187,42 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <?=$value->cours_name?>
+                        <?=$ligne['cours_name']?>
                     </td>
                     <?php
-                        $total += $top1=$top1 + $value->note;
+                    foreach ($ligne['notes'] as $data){
+                        $note = $data;
+                    }
+                        $total += $top1=$top1 + $note;
                     
                       ?>
                     <td>
-                        <?=$value->note?>
+                        <?=$note?>
                     </td>
 
                     <?php 
-                        //2ep $value->notes_periode2 par periode1
+                        //2ep $notes_periode2 par periode1
                         
-                    if(isset($value->notes_periode2)){
-                        foreach ($value->notes_periode1 as $value->note){
-                            $value->note2 = $value->note;
+                    if(isset($notes_periode2)){
+                        foreach ($notes_periode1 as $note){
+                            $note2 = $note;
                         }
-                        $top1=$top1 +  $value->note2; 
-                        $total2=$value->note2;
+                        $top1=$top1 +  $note2; 
+                        $total2=$note2;
                     }else{
-                        $value->note2 = 0;
+                        $note2 = 0;
                     }
                         ?>
                     <td>
-                        <?=$value->note2?>
+                        <?=$note2?>
                     </td>
                     <?php
-                        //1es $value->notes_sem1 par periode1
-                        $top1=$top1 + $value->note; 
-                        $totale1=$value->note;?>
+                        //1es $notes_sem1 par periode1
+                        $top1=$top1 + $note; 
+                        $totale1=$note;?>
 
                     <td>
-                        <?=$value->note?>
+                        <?=$note?>
                     </td>
                     <td>
                         <?=$top1?>
@@ -223,26 +230,26 @@
                     <!-- ================2eme semestre========================== -->
                     <?php
             
-              //3ep $value->notes_periode2 par periode1
-              $top2 +=  $value->note;
-            $total3=$value->note;
+              //3ep $notes_periode2 par periode1
+              $top2 +=  $note;
+            $total3=$note;
             ?>
                     <td>
-                        <?=$value->note?>
+                        <?=$note?>
                     </td>
                     <?php  
-                    //4ep $value->notes_periode2 par periode1
-            $top2 += $value->note;
-            $total4=$value->note; ?>
+                    //4ep $notes_periode2 par periode1
+            $top2 += $note;
+            $total4=$note; ?>
 
                     <td>
-                        <?=$value->note?>
+                        <?=$note?>
                     </td>
-                    <?php //2es $value->notes_periode2 par periode1 
-             $top2 += $value->note;
-             $totale2=$value->note; ?>
+                    <?php //2es $notes_periode2 par periode1 
+             $top2 += $note;
+             $totale2=$note; ?>
                     <td>
-                        <?=$value->note?>
+                        <?=$note?>
                     </td>
                     <td>
                         <?=$top2?>
@@ -259,48 +266,48 @@
               elseif ($pond==$pond2) {?>
                 <tr>
                     <td colspan="2">
-                        <?=$value->cours_name?>
+                        <?=$ligne['cours_name']?>
                     </td>
-                    <?php //1ere p $value->notes_periode2 par periode1  
-              $total +=$top1=$value->note; ?>
+                    <?php //1ere p $notes_periode2 par periode1  
+              $total +=$top1=$note; ?>
                     <td>
-                        <?=$value->note?>
+                        <?=$note?>
                     </td>
-                    <?php //2e p $value->notes_periode2 par periode1 
-            $top1=$top1 + $value->note; 
-            $total2 +=$value->note;?>
+                    <?php //2e p $notes_periode2 par periode1 
+            $top1=$top1 + $note; 
+            $total2 +=$note;?>
                     <td>
-                        <?=$value->note?>
+                        <?=$note?>
                     </td>
-                    <?php  //1es $value->notes_periode2 par periode1 
-            $top1=$top1 + $value->note;
-            $totale1 +=$value->note; ?>
+                    <?php  //1es $notes_periode2 par periode1 
+            $top1=$top1 + $note;
+            $totale1 +=$note; ?>
 
                     <td>
-                        <?=$value->note?>
+                        <?=$note?>
                     </td>
                     <td>
                         <?=$top1?>
                     </td>
                     <!-- ==========================2eme semestre==================================== -->
-                    <?php //3ep $value->notes_periode2 par periode1 
-            $total3 +=$top2 = $value->note; 
-            $total3 +=$value->note;?>
+                    <?php //3ep $notes_periode2 par periode1 
+            $total3 +=$top2 = $note; 
+            $total3 +=$note;?>
                     <td>
-                        <?=$value->note?>
+                        <?=$note?>
                     </td>
-                    <?php //4ep $value->notes_periode2 par periode1 
-            $total4 += $top2 += $value->note; 
-            $total4 +=$value->note;?>
+                    <?php //4ep $notes_periode2 par periode1 
+            $total4 += $top2 += $note; 
+            $total4 +=$note;?>
 
                     <td>
-                        <?=$value->note?>
+                        <?=$note?>
                     </td>
-                    <?php //2es $value->notes_periode2 par periode1  
-            $totale2 +=$top2 += $value->note; 
-            $totale2 +=$value->note;?>
+                    <?php //2es $notes_periode2 par periode1  
+            $totale2 +=$top2 += $note; 
+            $totale2 +=$note;?>
                     <td>
-                        <?=$value->note?>
+                        <?=$note?>
                     </td>
                     <td>
                         <?=$top2?>
@@ -348,48 +355,48 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <?=$value->cours_name?>
+                        <?=$ligne['cours_name']?>
                     </td>
-                    <?php //1ere p $value->notes_periode2 par periode1  
-             $total += $top1=$value->note; ?>
+                    <?php //1ere p $notes_periode2 par periode1  
+             $total += $top1=$note; ?>
                     <td>
-                        <?=$value->note?>
+                        <?=$note?>
                     </td>
-                    <?php //2e p $value->notes_periode2 par periode1 
-            $top1=$top1 + $value->note;
-            $total2 +=$value->note; ?>
+                    <?php //2e p $notes_periode2 par periode1 
+            $top1=$top1 + $note;
+            $total2 +=$note; ?>
                     <td>
-                        <?=$value->note?>
+                        <?=$note?>
                     </td>
-                    <?php  //1es $value->notes_periode2 par periode1 
-            $top1=$top1 + $value->note;
-            $totale1 +=$value->note; ?>
+                    <?php  //1es $notes_periode2 par periode1 
+            $top1=$top1 + $note;
+            $totale1 +=$note; ?>
 
                     <td>
-                        <?=$value->note?>
+                        <?=$note?>
                     </td>
                     <td>
                         <?=$top1?>
                     </td>
                     <!-- ===================2eme semestre================================ -->
-                    <?php //3ep $value->notes_periode2 par periode1 
-             $top2 = $value->note; 
-             $total3 +=$value->note;?>
+                    <?php //3ep $notes_periode2 par periode1 
+             $top2 = $note; 
+             $total3 +=$note;?>
                     <td>
-                        <?=$value->note?>
+                        <?=$note?>
                     </td>
-                    <?php //4ep $value->notes_periode2 par periode1 
-             $top2 += $value->note;
-             $total4 +=$value->note; ?>
+                    <?php //4ep $notes_periode2 par periode1 
+             $top2 += $note;
+             $total4 +=$note; ?>
 
                     <td>
-                        <?=$value->note?>
+                        <?=$note?>
                     </td>
-                    <?php //2es $value->notes_periode2 par periode1  
-            $top2 += $value->note;
-            $totale2 +=$value->note; ?>
+                    <?php //2es $notes_periode2 par periode1  
+            $top2 += $note;
+            $totale2 +=$note; ?>
                     <td>
-                        <?=$value->note?>
+                        <?=$note?>
                     </td>
                     <td>
                         <?=$top2?>

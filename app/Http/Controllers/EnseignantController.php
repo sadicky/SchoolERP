@@ -29,6 +29,31 @@ class EnseignantController extends Controller
         return view('admin.enseignants.enseignants',compact('title', 'enseignants'));
     } 
 
+    public function dashboard()
+    {
+        //
+        $title = "Dashboard"; 
+        $enseignants = DB::table('tbl_enseignants as e')
+        ->join('tbl_category_options as c', 'c.category_option_id','=','e.category_option_id')
+        ->join('tbl_grades as g', 'g.grade_id','=','e.grade')
+        ->get();
+
+        return view('teacher.dashboard',compact('title', 'enseignants'));
+    } 
+
+ 
+
+    public function camarades()
+    {
+        //
+        $title = "Mes Camarades";  
+        $enseignants = DB::table('tbl_enseignants as e')
+        ->join('tbl_category_options as c', 'c.category_option_id','=','e.category_option_id')
+        ->join('tbl_grades as g', 'g.grade_id','=','e.grade')
+        ->get();
+
+        return view('teacher.camarades',compact('title', 'enseignants'));
+    } 
     /**
      * Show the form for creating a new resource.
      */

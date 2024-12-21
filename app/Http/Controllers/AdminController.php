@@ -20,10 +20,6 @@ class AdminController extends Controller
         //
         $title = "Gestions des Admins";
         $utilisateur = Auth::user();
-        // $admin = $utilisateur->admin;
-        // $eleve = $utilisateur->eleve;
-        // $tuteur = $utilisateur->tuteur;
-        // $enseignant = $utilisateur->enseignant;
         $users = Admin::all(); 
         $roles = Role::all();
         return view('admin.users.all',compact('users', 'title','roles')); 
