@@ -46,7 +46,7 @@
         <div class="card-body">
             <hr><form action="{{ route('presencee.search') }}" method="POST">
                 @csrf
-                <div class="row">
+                <div class="row"> 
                     <div class="col-xl-3 col-lg-6 col-12 form-group ">
                         <label>Section</label>
                         <select class="form-control select2 section" id='section_id' name='section_id'>
@@ -83,11 +83,10 @@
             <h3 class="alert alert-danger">Aucun élève trouvé.</h3>
             @else
             <h4 class="card-title">FORMULAIRE DE PRESENCE</h4> <hr>
-            <form action="{{ url('presencee/' . $classe) }}" method="POST">
+            <form action="{{ url('admin/presencee/' . $classe) }}" method="POST">
                 @csrf
-                <input type="hidden"  value="{{$annees->annee_id}}" name="annee_id">
                 <div class="form-group col-md-3">
-                    <input type="date" name="date" class="form-control">
+                    <input type="hidden" name="date_presence" value="{{ date('Y-m-d') }}">
                 </div>
                 <br>
                 
@@ -104,10 +103,12 @@
                         @foreach($eleves as $eleve)
                         <tr>
                            <input type="hidden" id="eleve_id" value="{{$eleve->eleve_id}}" name="eleve_id[]">
+                           <input type="hidden" name="presences[{{ $eleve->eleve_id }}][presence]" value="0">
+                           <input type="hidden" name="presences[{{ $eleve->eleve_id }}][justify]" value="0">
                             <td>{{$eleve->nom}} {{$eleve->prenom}} {{$eleve->postnom}}</td>
-                            <td> <input type="checkbox" id="check" value="{{ old('check.' . $loop->index, '') }}"  class="form-control" name="check[]" required> </td>
-                            <td> <input type="checkbox" value="{{ old('justify.' . $loop->index, '') }}"  class="form-control" name="justify[]" required> </td>
-                            <td> <input type="text" value="{{ old('motif.' . $loop->index, '') }}"  class="form-control" name="motif[]" required> </td>
+                            <td> <input type="checkbox" id="check"  value="1" class="presence-checkbox form-control" name="presences[{{$eleve->eleve_id}}][presence]"> </td>
+                            <td> <input type="checkbox" value="0" class="justify-checkbox form-control" name="presences[{{ $eleve->eleve_id}}][justify]" > </td>
+                            <td> <input type="text"  class="form-control" placeholder="Motif (si nécessaire)" name="presences[{{ $eleve->eleve_id }}][motif]"> </td>
                         </tr>
                         @endforeach
                     </tbody>

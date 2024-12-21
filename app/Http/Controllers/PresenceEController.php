@@ -20,13 +20,13 @@ class PresenceEController extends Controller
         //
         $title = "Fiche de Présences";
         $sections = Section::all();
-        $annees = AnneeScolaire::where('statut','1')          
-        ->orderBy('annee_id', 'desc')
-        ->limit(1)
-        ->get();
+        $annees = AnneeScolaire::where('statut', '1')
+            ->orderBy('annee_id', 'desc')
+            ->limit(1)
+            ->get();
 
 
-        return view('admin.presencee.all',compact('annees', 'title', 'sections'));
+        return view('admin.presencee.all', compact('annees', 'title', 'sections'));
     }
 
     /**
@@ -37,13 +37,13 @@ class PresenceEController extends Controller
         //
         $title = "Fiche de Présences";
         $sections = Section::all();
-        $annees = AnneeScolaire::where('statut','1')          
-        ->orderBy('annee_id', 'desc')
-        ->limit(1)
-        ->get();
+        $annees = AnneeScolaire::where('statut', '1')
+            ->orderBy('annee_id', 'desc')
+            ->limit(1)
+            ->get();
 
 
-        return view('admin.presencee.create',compact('annees', 'title', 'sections'));
+        return view('admin.presencee.create', compact('annees', 'title', 'sections'));
     }
 
     public function search(Request $request)
@@ -54,24 +54,24 @@ class PresenceEController extends Controller
 
         $title = "Fiche de Cotation";
         $sections = Section::all();
-        
+
         $classe = $request->input('classe_id');
         $month = $request->input('month');
 
-        $annees = AnneeScolaire::where('statut','1')          
-        ->orderBy('annee_id', 'desc')
-        ->limit(1)
-        ->first();
+        $annees = AnneeScolaire::where('statut', '1')
+            ->orderBy('annee_id', 'desc')
+            ->limit(1)
+            ->first();
 
         $eleves = DB::table('tbl_eleves as e')
-        ->join('tbl_classes as cl', 'cl.classe_id','=','e.classe_id')
-        ->join('tbl_options as o', 'o.option_id','=','cl.option_id')
-        ->join('tbl_section as s', 's.section_id','=','o.section_id')
-        ->where('e.classe_id', '=',$classe)
-        ->where('e.statut', '=','1')
-        ->get();
+            ->join('tbl_classes as cl', 'cl.classe_id', '=', 'e.classe_id')
+            ->join('tbl_options as o', 'o.option_id', '=', 'cl.option_id')
+            ->join('tbl_section as s', 's.section_id', '=', 'o.section_id')
+            ->where('e.classe_id', '=', $classe)
+            ->where('e.statut', '=', '1')
+            ->get();
 
-        return view('admin.presencee.all',compact('month','sections','annees','eleves', 'title', 'classe'));
+        return view('admin.presencee.create', compact('month', 'sections', 'annees', 'eleves', 'title', 'classe'));
     }
 
     public function filter(Request $request)
@@ -82,24 +82,24 @@ class PresenceEController extends Controller
 
         $title = "Fiche de Cotation";
         $sections = Section::all();
-        
+
         $classe = $request->input('classe_id');
         $month = $request->input('month');
 
-        $annees = AnneeScolaire::where('statut','1')          
-        ->orderBy('annee_id', 'desc')
-        ->limit(1)
-        ->first();
+        $annees = AnneeScolaire::where('statut', '1')
+            ->orderBy('annee_id', 'desc')
+            ->limit(1)
+            ->first();
 
         $eleves = DB::table('tbl_eleves as e')
-        ->join('tbl_classes as cl', 'cl.classe_id','=','e.classe_id')
-        ->join('tbl_options as o', 'o.option_id','=','cl.option_id')
-        ->join('tbl_section as s', 's.section_id','=','o.section_id')
-        ->where('e.classe_id', '=',$classe)
-        ->where('e.statut', '=','1')
-        ->get();
+            ->join('tbl_classes as cl', 'cl.classe_id', '=', 'e.classe_id')
+            ->join('tbl_options as o', 'o.option_id', '=', 'cl.option_id')
+            ->join('tbl_section as s', 's.section_id', '=', 'o.section_id')
+            ->where('e.classe_id', '=', $classe)
+            ->where('e.statut', '=', '1')
+            ->get();
 
-        return view('admin.presencee.all',compact('month','sections','annees','eleves', 'title', 'classe'));
+        return view('admin.presencee.all', compact('month', 'sections', 'annees', 'eleves', 'title', 'classe'));
     }
 
     /**
@@ -108,32 +108,37 @@ class PresenceEController extends Controller
     public function store(Request $request, $classe)
     {
         $validatedData = $request->validate([
-            'periode_id' => 'required|integer',
             'eleve_id' => 'required|array',
             'eleve_id.*' => 'required|integer',
-            'note' => 'required|array',
-            'note.*' => 'required|numeric|min:0|max:20',
-            'ponderation' => 'required|numeric|min:0|max:100',
+            'presence' => 'array',
+            'presence.*.presence' => 'required|in:0,1',
+            'presence.*.motif' => 'nullable|string|max:255',
+            'date_presence' => 'required|date',
+            'justify' => 'string|max:255',
         ]);
 
-        $notes = [];
-    foreach ($request->eleve_id as $index => $eleveId) {
-        $notes[] = [
-            'periode_id' => $request->periode_id,
-            'eleve_id' => $eleveId,
-            'cours_id' => $cours,
-            'annee_id' => $request->annee_id,
-            'note' => $request->note[$index],
-            'ponderation' => $request->ponderation,
-            'date_note' => date('Y-m-d'),
-            'status' => '1'
-        ];
-    }
-        Fiche::insert($notes); 
-        // DB::table('tbl_notes')->insert($notes);
+       
 
-        session()->flash('message',' Note Ajoutée avec succes');
-        return redirect()->route('fiches.index');
+        $data = $request->input('presences');
+        $date = $request->input('date_presence');
+        $justify = $request->input('justify');
+
+        $presences = [];
+        foreach ($data as $eleveId => $presenceData) {
+            
+            $presences[] = [
+                'eleve_id'      => $eleveId,
+                'classe_id'     => $classe,
+                'presence'      => isset($presenceData['presence']) ? true : false,
+                'motif'         => $presenceData['motif'] ?? null,
+                'justify'       => isset($presenceData['justify']) ? true : false,
+                'date_presence' => $date,
+            ];
+            
+        }
+        PresenceE::insert($presences);
+        session()->flash('message', ' Présence Ajoutée avec succes');
+        return redirect()->route('presencee.index');
     }
 
 

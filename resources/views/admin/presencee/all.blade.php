@@ -86,13 +86,12 @@
                 </div>
             </form>
             <hr>
-
+ 
             @isset($eleves)
             @if($eleves->isEmpty())
             <h3 class="alert alert-danger">Aucun élève trouvé.</h3>
             @else
             <h4 class="card-title">FORMULAIRE DE PRESENCE ({{$month}})</h4> <hr>
-            
             <div class="table-responsive">
                 <table class="table bs-table table-striped table-bordered text-nowrap">
                     <thead>

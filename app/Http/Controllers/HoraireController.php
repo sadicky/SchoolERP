@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Horaire;
 use App\Models\Cours;
 use App\Models\Classe;
+use App\Models\Section;
 use Illuminate\Support\Facades\DB;
 
 class HoraireController extends Controller
@@ -23,7 +24,6 @@ class HoraireController extends Controller
         return view('admin.horaires.horaires', compact('title','horaires'));
     }
 
-<<<<<<< HEAD
     public function my_schedule()
     {
         //
@@ -44,8 +44,16 @@ class HoraireController extends Controller
         return view('student.my_schedule', compact('title','horaires'));
     }
 
-=======
->>>>>>> 81037cf09e4667f67a32312716fdc9513e55e18e
+    public function schedule()
+    {
+        //
+        $title = "Mes Horaires";
+        $horaires = DB::table('tbl_horaires as h')
+        ->join('tbl_classes as c', 'c.classe_id','=','h.classe_id')
+        ->join('tbl_cours as crs', 'crs.cours_id','=','h.cours_id')->get();
+        return view('parent.my_schedule', compact('title','horaires'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -54,9 +62,8 @@ class HoraireController extends Controller
         //
         $title = "Nouvel Horaire";
 
-        $cours = Cours::all();
-        $classes = Classe::all();
-        return view('admin.horaires.create', compact('title','cours','classes'));
+        $sections = Section::all();
+        return view('admin.horaires.create', compact('title','sections'));
     }
 
     /**

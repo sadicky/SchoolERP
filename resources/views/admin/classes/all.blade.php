@@ -60,6 +60,7 @@
                     <th>Option</th>
                     <th>Classe</th>
                     <th>Statut</th>
+                    <th>Détails</th>
                     <th>Actions</th>
                     </tr>
                 </thead>
@@ -75,6 +76,7 @@
                         @else
                         <td class="text-danger">Inactif</td>
                         @endif
+                        <td><a class="btn btn-xs btn-info fa fa-file" href="{{route('classes.show',$classe->classe_id)}}">Afficher</a></td>
                         <td>
                             <form action="{{ route('classes.destroy', $classe->classe_id) }}" method="POST"
                                 style="display: inline;">
@@ -88,7 +90,7 @@
                             <a href="{{route('classes.edit',$classe->classe_id)}}"
                                 class=" btn btn-xs btn-success fas fa-edit" title="Modifier">Modifier</a>
                         </td>
-                    </tr>
+                          </tr>
                     @endforeach
                 </tbody>
             </table>

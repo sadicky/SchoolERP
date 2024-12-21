@@ -49,8 +49,6 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
 
     //SECTIONS
     Route::resource('/sections', SectionController::class);
-    Route::get('/sections/get-inscription/{section_id}', [SectionController::class, 'get_inscription'])->name('get_inscription');
-    Route::get('/sections/get-periode/{section_id}', [SectionController::class, 'get_periode'])->name('get_periode');;
 
     //OPTIONS
     Route::resource('/options', OptionController::class);
@@ -72,13 +70,9 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
 
     //CLASSES
     Route::resource('classes', ClasseController::class);
-    Route::get('/classes/get-cours/{classe_id}', [ClasseController::class, 'get_cours'])->name('get_cours');
-    Route::get('/classes/get-options/{section_id}', [ClasseController::class, 'get_options'])->name('get_option');
-
 
     //COURS
     Route::resource('cours', CoursController::class);
-    Route::get('/cours/get-classes/{classe_id}', [CoursController::class, 'get_classes']);
     Route::get('/cours/{id}/affecter', [CoursController::class, 'affect_classes'])->name('get_classes');
     Route::patch('/cours/{id}/affecter_classe', [CoursController::class, 'affect_cours_classe'])->name('cours.affecter');
     // Route::get('/classes/get-classe/{section_id}', [ClasseController::class,'get_options'])->name('get_option');
@@ -86,7 +80,6 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
 
     //Eleves
     Route::get('/eleves/{id}/restore', [EleveController::class, 'restore'])->name('eleves.restore');
-    Route::get('/eleves/check-tutor', [EleveController::class, 'checkTutor']);
     Route::delete('/eleves/{id}/force-delete', [EleveController::class, 'forceDelete'])->name('eleves.force_delete');
     Route::resource('eleves', EleveController::class);
     Route::post('/eleves/search', [FicheController::class, 'search'])->name('eleves.search');
@@ -121,6 +114,7 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
     Route::resource('presencee', PresenceEController::class);
     Route::post('/presencee/search', [PresenceEController::class, 'search'])->name('presencee.search');
     Route::post('/presencee/filter', [PresenceEController::class, 'filter'])->name('presencee.filter');
+    Route::post('/presencee/{classe}', [PresenceEController::class, 'store']);
 
     //Presence Personnel
     Route::resource('presencep', PresencePController::class);
@@ -135,16 +129,14 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
     //HORRAIRE
     Route::get('/horaires/{id}/restore', [HoraireController::class, 'restore'])->name('horaires.restore');
     Route::delete('/horaires/{id}/force-delete', [HoraireController::class, 'forceDelete'])->name('horaires.force_delete');
-    
+
     Route::resource('horaires', HoraireController::class);
-    
+
     //Primes
     Route::get('/primes/{id}/restore', [PrimeController::class, 'restore'])->name('primes.restore');
     Route::delete('/primes/{id}/force-delete', [PrimeController::class, 'forceDelete'])->name('primes.force_delete');
     Route::resource('primes', PrimeController::class);
-    
 });
-
 
 
 Route::prefix('teachers')->middleware(['auth:enseignant'])->group(function () {
@@ -168,6 +160,14 @@ Route::prefix('students')->middleware(['auth:eleve'])->group(function () {
     Route::get('/login', [AuthController::class, 'showEleveLoginForm'])->name('login');
 
     Route::get('schedule', [HoraireController::class, 'schedule_e'])->name('e.horaires');
+});
+
+Route::prefix('tuteurs')->middleware(['auth:tuteur'])->group(function () {
+    Route::get('/dashboard', [TuteurController::class, 'dashboard'])->name('tuteur.dashboard');
+
+    Route::get('/', [AuthController::class, 'showParentLoginForm'])->name('login');
+    Route::get('/login', [AuthController::class, 'showParentLoginForm'])->name('login');
+    Route::get('my_schedule', [HoraireController::class, 'schedule'])->name('t.horaires');
 });
 
 
@@ -194,3 +194,11 @@ Route::post('/students/login', [AuthController::class, 'eleveLogin']);
 // Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/classes/get-options/{section_id}', [ClasseController::class, 'get_options'])->name('get_option');
+Route::get('/sections/get-inscription/{section_id}', [SectionController::class, 'get_inscription'])->name('get_inscription');
+Route::get('/sections/get-periode/{section_id}', [SectionController::class, 'get_periode'])->name('get_periode');;
+
+Route::get('/classes/get-cours/{classe_id}', [ClasseController::class, 'get_cours'])->name('get_cours');
+
+Route::get('/cours/get-classes/{classe_id}', [CoursController::class, 'get_classes']);
+Route::get('/eleves/check-tutor', [EleveController::class, 'checkTutor']);

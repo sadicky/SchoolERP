@@ -16,5 +16,14 @@
           });
       });
   
+      $('.presence-checkbox').on('change', function () {
+        const row = $(this).closest('tr');
+        const justifyCheckbox = row.find('.justify-checkbox');
 
+        if ($(this).is(':checked')) {
+            justifyCheckbox.prop('disabled', true).prop('checked', false);
+        } else {
+            justifyCheckbox.prop('disabled', false);
+        }
+    });
   });

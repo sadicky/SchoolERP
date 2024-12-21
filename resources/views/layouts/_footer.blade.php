@@ -36,4 +36,5 @@
     <script src="{{asset('assets/js/ajax/join_section_option_classe.js')}}"></script>
     <script src="{{asset('assets/js/ajax/section.js')}}"></script>
     <script src="{{asset('assets/js/ajax/eleves.js')}}"></script>
-   
+    <script src="{{asset('assets/js/ajax/classes.js')}}"></script>
+    

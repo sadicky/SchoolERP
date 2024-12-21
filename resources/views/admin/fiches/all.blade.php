@@ -109,7 +109,7 @@
             <h3 class="alert alert-danger">Aucun élève trouvé.</h3>
             @else
             <h4 class="card-title">FICHE DE COTATION</h4>
-            <form action="{{ url('fiches/' . $cours) }}" method="POST">
+            <form action="{{ url('admin/fiches/' . $cours) }}" method="POST">
                 @csrf
                 <input type="hidden" id="periode_id" value="{{$periode}}" name="periode_id">
                 <input type="hidden"  value="{{$annees->annee_id}}" name="annee_id">

@@ -63,7 +63,6 @@
                                     </th>
                                     <th>Classes</th>
                                     <th>Cours</th>
-                                    <th>Option</th>
                                     <th>Enseignant</th>
                                     <th>Time</th>
                                     <th>Actions</th>
@@ -80,9 +79,8 @@
                                     </td>
                                     <td>{{$horaire->classe_name}}</td>
                                     <td>{{$horaire->cours_name}}</td>
-                                    <td>A</td>
                                     <td>Mike John</td>
-                                    <td>{{$horaire->heure}} Jusqu'à {{$horaire->fin}}</td>
+                                    <td>{{$horaire->heure}} - {{$horaire->fin}}</td>
                                     <td>
                                         <div class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
