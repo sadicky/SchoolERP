@@ -17,6 +17,7 @@
     <!-- Row -->
     <div class="modal-box pull-right">
         <a href="{{route('primes.index')}}" class="btn btn-lg btn-success" style="font-size: 20px">Toutes les primes</a>
+        <a href="{{route('categories_primes.index')}}" class="btn btn-lg btn-primary" style="font-size: 20px">Ajouter une catégorie de prime</a>
         <hr>
     </div>
     <!-- Teacher Payment Area Start Here --> 

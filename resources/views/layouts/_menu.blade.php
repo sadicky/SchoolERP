@@ -49,7 +49,7 @@
                 <a href="{{route('primes.index')}}" class="nav-link"><i class="fas fa-angle-right"></i>Primes</a>
             </li>
             <li class="nav-item">
-                <a href="all-expense.html" class="nav-link"><i class="fas fa-angle-right"></i>Salaires</a>
+                {{-- <a href="all-expense.html" class="nav-link"><i class="fas fa-angle-right"></i>Salaires</a> --}}
             </li>
             <li class="nav-item">
                 <a href="all-expense.html" class="nav-link"><i class="fas fa-angle-right"></i>Dépenses</a>
