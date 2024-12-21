@@ -25,9 +25,12 @@ use App\Http\Controllers\AnneeScolaireController;
 use App\Http\Controllers\CommuniqueController;
 use App\Http\Controllers\HoraireController;
 use App\Http\Controllers\PrimeController;
+<<<<<<< HEAD
 use App\Models\Enseignant;
 use App\Models\Horaire;
 use App\Models\Tuteur;
+=======
+>>>>>>> 81037cf09e4667f67a32312716fdc9513e55e18e
 
 Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
@@ -167,8 +170,34 @@ Route::prefix('students')->middleware(['auth:eleve'])->group(function () {
     Route::get('schedule', [HoraireController::class, 'schedule_e'])->name('e.horaires');
 });
 
+<<<<<<< HEAD
 Route::prefix('tuteurs')->middleware(['auth:tuteur'])->group(function () {
     Route::get('/dashboard', [TuteurController::class, 'dashboard'])->name('tuteur.dashboard');
+=======
+//Communiques
+Route::get('/communiques/{id}/restore', [CommuniqueController::class, 'restore'])->name('communiques.restore');
+Route::delete('/communiques/{id}/force-delete', [CommuniqueController::class, 'forceDelete'])->name('communiques.force_delete');
+
+Route::resource('communiques', CommuniqueController::class);
+
+//Horaires
+Route::get('/horaires/{id}/restore', [HoraireController::class, 'restore'])->name('horaires.restore');
+Route::delete('/horaires/{id}/force-delete', [HoraireController::class, 'forceDelete'])->name('horaires.force_delete');
+
+Route::resource('horaires', HoraireController::class);
+
+//Primes
+Route::get('/primes/{id}/restore', [PrimeController::class, 'restore'])->name('primes.restore');
+Route::delete('/primes/{id}/force-delete', [PrimeController::class, 'forceDelete'])->name('primes.force_delete');
+Route::resource('primes', PrimeController::class);
+
+
+
+
+// Route::prefix('admin')->middleware(['auth:admin', 'role:admin'])->group(function () {
+//     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+// });
+>>>>>>> 81037cf09e4667f67a32312716fdc9513e55e18e
 
     Route::get('/', [AuthController::class, 'showParentLoginForm'])->name('login');
     Route::get('/login', [AuthController::class, 'showParentLoginForm'])->name('login');

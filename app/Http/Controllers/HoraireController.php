@@ -23,6 +23,7 @@ class HoraireController extends Controller
         return view('admin.horaires.horaires', compact('title','horaires'));
     }
 
+<<<<<<< HEAD
     public function my_schedule()
     {
         //
@@ -43,6 +44,8 @@ class HoraireController extends Controller
         return view('student.my_schedule', compact('title','horaires'));
     }
 
+=======
+>>>>>>> 81037cf09e4667f67a32312716fdc9513e55e18e
     /**
      * Show the form for creating a new resource.
      */
